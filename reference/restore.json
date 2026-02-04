@@ -1,0 +1,2436 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Live API endpoint",
+    "version": "2.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.awrcloud.com/v2"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "token"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/get.php?action=projects": {
+      "get": {
+        "summary": "Get Projects",
+        "description": "Retrieves the names of all projects that exist in your AWR account.",
+        "operationId": "get-projects",
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Projects Data": {
+                    "value": "{\n  \"projects\": [\n    {\n      \"name\": \"AWR\",\n      \"id\": \"2\",\n      \"frequency\": \"daily\",\n      \"depth\": \"10\",\n      \"kwcount\": \"128\",\n      \"main_website\": \"advancedwebranking.com\",\n      \"last_updated\": \"2023-09-17\",\n      \"timestamp\": 1694937653\n    },\n    {\n      \"name\": \"chicagolawyer.com\",\n      \"id\": \"853\",\n      \"frequency\": \"ondemand\",\n      \"depth\": \"5\",\n      \"kwcount\": \"1\",\n      \"main_website\": \"chicagolawyer.com\",\n      \"last_updated\": \"2022-10-19\",\n      \"timestamp\": 1674600918\n    },\n    {\n      \"name\": \"www.gsqi.com\",\n      \"id\": \"854\",\n      \"frequency\": \"ondemand\",\n      \"depth\": \"5\",\n      \"kwcount\": \"5\",\n      \"main_website\": \"www.gsqi.com/\",\n      \"last_updated\": \"2022-10-24\",\n      \"timestamp\": 1674600917\n    }\n  ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "projects": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "example": "AWR"
+                          },
+                          "id": {
+                            "type": "string",
+                            "example": "2"
+                          },
+                          "frequency": {
+                            "type": "string",
+                            "example": "daily"
+                          },
+                          "depth": {
+                            "type": "string",
+                            "example": "10"
+                          },
+                          "kwcount": {
+                            "type": "string",
+                            "example": "128"
+                          },
+                          "main_website": {
+                            "type": "string",
+                            "example": "advancedwebranking.com"
+                          },
+                          "last_updated": {
+                            "type": "string",
+                            "example": "2023-09-17"
+                          },
+                          "timestamp": {
+                            "type": "integer",
+                            "example": 1694937653,
+                            "default": 0
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=create": {
+      "post": {
+        "summary": "Create Project",
+        "description": "This operation creates a new project in your AWR account. You can specify the project details such as country, search depth and update frequency. You must add at least one website, one keyword and one search engine.",
+        "operationId": "create-project",
+        "parameters": [
+          {
+            "name": "project",
+            "in": "query",
+            "description": "The name your project will have in your account. Use URL encoding if you want to add spaces in the name.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "My New Project"
+            }
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "description": "Used for formatting numbers and gathering AdWords country-specific data. Use Alpha-2 codes from: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements.",
+            "schema": {
+              "type": "string",
+              "default": "US"
+            }
+          },
+          {
+            "name": "depth",
+            "in": "query",
+            "description": "The number of pages to be retrieved from search engines. You can specify a number from 1 to 10 (pages).  Leave this field blank to use the default (2 pages).",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 2
+            }
+          },
+          {
+            "name": "frequency",
+            "in": "query",
+            "description": "Your project's update frequency.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "daily",
+                "weekly",
+                "biweekly",
+                "monthly",
+                "ondemand"
+              ],
+              "default": "weekly"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "websites",
+                  "keywords",
+                  "searchengines"
+                ],
+                "properties": {
+                  "websites": {
+                    "type": "array",
+                    "items": {
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "aliases": {
+                          "type": "string",
+                          "description": "Comma separated list of values, eg: *.yahoo.com,yahoo.com,subdomain.yahoo.com,yahoo.com/URL*,yahoo.com/URL,https://www.youtube.com/c/YahooChannel"
+                        },
+                        "color_r": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "color_g": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "color_b": {
+                          "type": "integer",
+                          "format": "int32"
+                        }
+                      },
+                      "required": [
+                        "name"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "kw_groups": {
+                          "type": "array",
+                          "description": "[\"keyword group 1\", \"keyword group 2\"]",
+                          "default": [],
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "color_r": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "color_g": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "color_b": {
+                          "type": "integer",
+                          "format": "int32"
+                        }
+                      },
+                      "required": [
+                        "name"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "searchengines": {
+                    "type": "object",
+                    "properties": {
+                      "google": {
+                        "type": "array",
+                        "description": "Use this object to add a Google search engine.",
+                        "items": {
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "This field allows you to add a Google search engine with or without location. If you don't add a location or language, the default is google.com United States in english.",
+                              "default": "Google",
+                              "enum": [
+                                "Google"
+                              ]
+                            },
+                            "country": {
+                              "type": "string",
+                              "description": "You can find a list of all countries here: https://www.advancedwebranking.com/cloud/api/countries.csv<br>Use the short form with two letters. Example: DE (for Germany).",
+                              "default": "US"
+                            },
+                            "se_type": {
+                              "type": "string",
+                              "description": "This is the search engine vertical.",
+                              "default": "desktop universal",
+                              "enum": [
+                                "desktop universal",
+                                "desktop organic",
+                                "desktop organic and places",
+                                "desktop places",
+                                "desktop adwords",
+                                "desktop images",
+                                "desktop video",
+                                "desktop maps",
+                                "desktop shopping",
+                                "desktop jobs",
+                                "mobile universal",
+                                "mobile organic",
+                                "mobile images",
+                                "mobile video",
+                                "mobile news"
+                              ]
+                            },
+                            "language": {
+                              "type": "string",
+                              "description": "You can find a list of all languages here: https://www.advancedwebranking.com/cloud/api/languages.csv<br/>Use the short form with two letters. Example: de (for German).",
+                              "default": "en"
+                            },
+                            "location": {
+                              "type": "string",
+                              "description": "You can find a list of all locations here: https://developers.google.com/google-ads/api/data/geotargets.<br/>Example: San Francisco, CA."
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "country",
+                            "se_type",
+                            "language"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "other": {
+                        "type": "array",
+                        "description": "Use this object to add any other predefined search engines.",
+                        "items": {
+                          "properties": {
+                            "awr_id": {
+                              "type": "integer",
+                              "description": "Here you can add any other predefined search engine. The full list of search engines that AWR supports is here: https://app.advancedwebranking.com/searchengines<br> Add only the search engine ID from the third column in the list. Example: 1287784873 (for Google Play).",
+                              "format": "int32"
+                            }
+                          },
+                          "required": [
+                            "awr_id"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"response_code\": 0,\n  \"message\": \"OK\"\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "response_code": {
+                      "type": "integer",
+                      "example": 0,
+                      "default": 0
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "OK"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=details": {
+      "get": {
+        "summary": "Get Project Details",
+        "description": "This operation retrieves details about an AWR project. It returns the following information: project details, websites, keywords, search engines and locations.",
+        "operationId": "get-project-details",
+        "parameters": [
+          {
+            "name": "project",
+            "in": "query",
+            "description": "The name of the project from your AWR account.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"project_details\": {\n    \"name\": \"My Project\",\n    \"id\": \"2\",\n    \"frequency\": \"ondemand\",\n    \"depth\": \"5\",\n    \"last_updated\": \"2022-12-14\",\n    \"timestamp\": 1692150320\n  },\n  \"websites\": [\n    {\n      \"name\": \"www.allrecipes.com\",\n      \"color_r\": \"0\",\n      \"color_g\": \"123\",\n      \"color_b\": \"196\",\n      \"index\": \"1\",\n      \"aliases\": [\n        \"allrecipes.com\"\n      ]\n    },\n    {\n      \"name\": \"allbeverages.com\",\n      \"color_r\": \"85\",\n      \"color_g\": \"145\",\n      \"color_b\": \"50\",\n      \"index\": \"1\",\n      \"aliases\": [\n        \"*.allbeverages.com\"\n      ]\n    }\n   ],\n  \"keywords\": [\n    {\n      \"name\": \"seo reports\",\n      \"priority\": \"0\",\n      \"color_r\": \"169\",\n      \"color_g\": \"209\",\n      \"color_b\": \"231\",\n      \"index\": \"9\",\n      \"added_on\": \"2013-04-04\",\n      \"kw_groups\": [\n        \"branded\",\n        \"Group 1\"\n      ]\n    },\n    {\n      \"name\": \"viral content\",\n      \"priority\": \"0\",\n      \"color_r\": \"54\",\n      \"color_g\": \"154\",\n      \"color_b\": \"61\",\n      \"index\": \"2\",\n      \"added_on\": \"2013-04-04\",\n      \"kw_groups\": [\n        \"branded\",\n        \"Group 1\"\n      ]\n    }\n  ],\n  \"searchengines\": [\n    {\n      \"awr_id\": \"2138589785\",\n      \"name\": \"Google\",\n      \"display_name\": \"Google.com Desktop Organic and Places\"\n    },\n    {\n      \"awr_id\": \"-1413568826\",\n      \"name\": \"google|US|New York, NY|en|organic and places|0|0|0\",\n      \"display_name\": \"Google.com New York, NY Desktop Organic and Places\"\n    }\n  ],\n  \"locations\": [\n    {\n      \"type\": \"4\",\n      \"se_group\": \"google\",\n      \"language\": \"en\",\n      \"country\": \"US\",\n      \"location\": \"New York, NY\",\n      \"safe_search\": \"0\",\n      \"search_in_country\": 0,\n      \"search_in_language\": 0,\n      \"search_type\": \"0\",\n      \"search_type_name\": \"Organic And Places\",\n      \"name\": \"google|US|New York, NY|en|organic and places|0|0|0\",\n      \"awr_id\": \"-1413568826\"\n    }\n  ]    \n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "project_details": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "My Project"
+                        },
+                        "id": {
+                          "type": "string",
+                          "example": "2"
+                        },
+                        "frequency": {
+                          "type": "string",
+                          "example": "ondemand"
+                        },
+                        "depth": {
+                          "type": "string",
+                          "example": "5"
+                        },
+                        "last_updated": {
+                          "type": "string",
+                          "example": "2022-12-14"
+                        },
+                        "timestamp": {
+                          "type": "integer",
+                          "example": 1692150320,
+                          "default": 0
+                        }
+                      }
+                    },
+                    "websites": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "example": "www.allrecipes.com"
+                          },
+                          "color_r": {
+                            "type": "string",
+                            "example": "0"
+                          },
+                          "color_g": {
+                            "type": "string",
+                            "example": "123"
+                          },
+                          "color_b": {
+                            "type": "string",
+                            "example": "196"
+                          },
+                          "index": {
+                            "type": "string",
+                            "example": "1"
+                          },
+                          "aliases": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "example": "allrecipes.com"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "keywords": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "example": "seo reports"
+                          },
+                          "priority": {
+                            "type": "string",
+                            "example": "0"
+                          },
+                          "color_r": {
+                            "type": "string",
+                            "example": "169"
+                          },
+                          "color_g": {
+                            "type": "string",
+                            "example": "209"
+                          },
+                          "color_b": {
+                            "type": "string",
+                            "example": "231"
+                          },
+                          "index": {
+                            "type": "string",
+                            "example": "9"
+                          },
+                          "added_on": {
+                            "type": "string",
+                            "example": "2013-04-04"
+                          },
+                          "kw_groups": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "example": "branded"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "searchengines": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "awr_id": {
+                            "type": "string",
+                            "example": "2138589785"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Google"
+                          },
+                          "display_name": {
+                            "type": "string",
+                            "example": "Google.com Desktop Organic and Places"
+                          }
+                        }
+                      }
+                    },
+                    "locations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "example": "4"
+                          },
+                          "se_group": {
+                            "type": "string",
+                            "example": "google"
+                          },
+                          "language": {
+                            "type": "string",
+                            "example": "en"
+                          },
+                          "country": {
+                            "type": "string",
+                            "example": "US"
+                          },
+                          "location": {
+                            "type": "string",
+                            "example": "New York, NY"
+                          },
+                          "safe_search": {
+                            "type": "string",
+                            "example": "0"
+                          },
+                          "search_in_country": {
+                            "type": "integer",
+                            "example": 0,
+                            "default": 0
+                          },
+                          "search_in_language": {
+                            "type": "integer",
+                            "example": 0,
+                            "default": 0
+                          },
+                          "search_type": {
+                            "type": "string",
+                            "example": "0"
+                          },
+                          "search_type_name": {
+                            "type": "string",
+                            "example": "Organic And Places"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "google|US|New York, NY|en|organic and places|0|0|0"
+                          },
+                          "awr_id": {
+                            "type": "string",
+                            "example": "-1413568826"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=delete_projects": {
+      "post": {
+        "summary": "Delete Projects",
+        "description": "This operation deletes one or more projects from your AWR account.",
+        "operationId": "delete-projects",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "projects"
+                ],
+                "properties": {
+                  "projects": {
+                    "type": "array",
+                    "items": {
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "name"
+                      ],
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"response_code\": 0,\n  \"message\": \"OK\",\n  \"details\": {\n    \"projects\": [\n      {\n        \"name\": \"test\",\n        \"status\": 0\n      }\n    ]\n  }\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "response_code": {
+                      "type": "integer",
+                      "example": 0,
+                      "default": 0
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "details": {
+                      "type": "object",
+                      "properties": {
+                        "projects": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "example": "test"
+                              },
+                              "status": {
+                                "type": "integer",
+                                "example": 0,
+                                "default": 0
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=get_keywords": {
+      "get": {
+        "summary": "Get Project Keywords",
+        "description": "This operation returns all keywords and all keyword groups they're in from either one or all your AWR projects.",
+        "operationId": "get-project-keywords",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "-1 for All Projects or a project id returned by <a href=\"https://awr.readme.io/reference/get-projects\">Get Projects</a>.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": -1
+            }
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "description": "Whether to trigger a file download or return a plain text response",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "download",
+                "plain"
+              ],
+              "default": "plain"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": ""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=get_dates": {
+      "get": {
+        "summary": "Get Project Update Dates",
+        "description": "This operation retrieves all the dates on which an AWR project was updated.",
+        "operationId": "get-project-dates",
+        "parameters": [
+          {
+            "name": "project",
+            "in": "query",
+            "description": "The name of the project from your AWR account.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"response_code\": 0,\n  \"message\": \"OK\",\n  \"details\": {\n    \"dates\": [\n      {\n        \"date\": \"2013-07-10\",\n        \"depth\": \"5\"\n      },\n      {\n        \"date\": \"2023-08-22\",\n        \"depth\": \"5\"\n      }\n    ]\n  }\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "response_code": {
+                      "type": "integer",
+                      "example": 0,
+                      "default": 0
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "details": {
+                      "type": "object",
+                      "properties": {
+                        "dates": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "date": {
+                                "type": "string",
+                                "example": "2013-07-10"
+                              },
+                              "depth": {
+                                "type": "string",
+                                "example": "5"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=estimate_on_demand": {
+      "get": {
+        "summary": "Estimate On Demand Update",
+        "description": "Estimates how many resources you'd need to start an on demand update for one or multiple projects.",
+        "operationId": "estimate-on-demand-updates",
+        "parameters": [
+          {
+            "name": "projectIds",
+            "in": "query",
+            "description": "Comma separated project IDs: 1,2,3. Use -1 to get estimates for all your projects.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "1,2,3"
+            }
+          },
+          {
+            "name": "speed",
+            "in": "query",
+            "description": "Can be:<br/>- slow (rankings are delivered within 48h)<br/>- fast (data is available within 12h)<br/>- ultrafast (data is available within 1h).",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "slow",
+                "fast",
+                "ultrafast"
+              ],
+              "default": "slow"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "\"old_keyword_units\" - how many keyword units you are currently using\n\"new_keyword_units\" - how many keyword units you would end up using if you started an update for all eligible projects\n\n{\n  \"old_keyword_units\": \"57486\",\n  \"new_keyword_units\": 63411,\n  \"plan_keyword_units\": 160000,\n  \"websites\": {\n    \"2\": {\n      \"project\": \"allrecipes.com\",\n      \"response_code\": 0,\n      \"message\": \"Project is eligible for the slow update.\",\n      \"used_keyword_units\": 5345\n    },\n    \"4\": {\n      \"project\": \"4\",\n      \"response_code\": 7,\n      \"message\": \"Project does not exist. Update cannot be started.\"\n    },\n    \"6\": {\n      \"project\": \"6\",\n      \"response_code\": 7,\n      \"message\": \"Project does not exist. Update cannot be started.\"\n    },\n    \"16\": {\n      \"project\": \"mtv.com\",\n      \"response_code\": 0,\n      \"message\": \"Project is eligible for the slow update.\",\n      \"used_keyword_units\": 580\n    }\n  }\n}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=on_demand": {
+      "get": {
+        "summary": "Request On Demand Update",
+        "description": "Requests an update for one or multiple projects.",
+        "operationId": "request-on-demand-update",
+        "parameters": [
+          {
+            "name": "projectIds",
+            "in": "query",
+            "description": "Comma separated project IDs: 1,2,3. Use -1 to start updates for all your projects.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "1,2,3"
+            }
+          },
+          {
+            "name": "speed",
+            "in": "query",
+            "description": "Can be:<br/>- slow (rankings are delivered within 48h)<br/>- fast (data is available within 12h)<br/>- ultrafast (data is available within 1h).",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "slow",
+                "fast",
+                "ultrafast"
+              ],
+              "default": "slow"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "\"old_keyword_units\" - how many keyword units you were using before starting updates\n\"new_keyword_units\" - how many keyword units you are currently using\n\n{\n  \"old_keyword_units\": \"24528.5\",\n  \"new_keyword_units\": 24981,\n  \"plan_keyword_units\": 200000,\n  \"websites\": {\n    \"4\": {\n      \"project\": \"allrecipes.com\",\n      \"response_code\": 0,\n      \"message\": \"Your website has been queued for a ranking update.\",\n      \"used_keyword_units\": 405\n    },\n    \"387\": {\n      \"project\": \"mtv.com\",\n      \"response_code\": 0,\n      \"message\": \"Your website has been queued for a ranking update.\",\n      \"used_keyword_units\": 47.5\n    },\n    \"19939193\": {\n      \"project\": \"19939193\",\n      \"response_code\": 7,\n      \"message\": \"Project does not exist. Update cannot be started.\"\n    }\n  }\n}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=estimate_keyword_difficulty": {
+      "get": {
+        "summary": "Estimate KW Difficulty Update",
+        "description": "Estimates how many resources you'd need to start an update for one or multiple projects.",
+        "operationId": "estimate-kw-difficulty-update",
+        "parameters": [
+          {
+            "name": "projectIds",
+            "in": "query",
+            "description": "Comma separated project IDs: 1,2,3. Use -1 to get estimates for all your projects.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"planKeywordUnits\": 160000,\n  \"availableKeywordUnits\": 155470.5,\n  \"difficultyUpdateKeywordUnits\": 4456,\n  \"remainingKeywordUnits\": 151014.5,\n  \"projectInfo\": {\n    \"2\": {\n      \"difficultyUpdateAvailable\": true,\n      \"difficultyUpdateKeywordUnits\": 112\n    },\n    \"4\": {\n      \"difficultyUpdateAvailable\": false,\n      \"difficultyUpdateKeywordUnits\": 4344\n    }\n  }\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "planKeywordUnits": {
+                      "type": "integer",
+                      "example": 160000,
+                      "default": 0
+                    },
+                    "availableKeywordUnits": {
+                      "type": "number",
+                      "example": 155470.5,
+                      "default": 0
+                    },
+                    "difficultyUpdateKeywordUnits": {
+                      "type": "integer",
+                      "example": 4456,
+                      "default": 0
+                    },
+                    "remainingKeywordUnits": {
+                      "type": "number",
+                      "example": 151014.5,
+                      "default": 0
+                    },
+                    "projectInfo": {
+                      "type": "object",
+                      "properties": {
+                        "2": {
+                          "type": "object",
+                          "properties": {
+                            "difficultyUpdateAvailable": {
+                              "type": "boolean",
+                              "example": true,
+                              "default": true
+                            },
+                            "difficultyUpdateKeywordUnits": {
+                              "type": "integer",
+                              "example": 112,
+                              "default": 0
+                            }
+                          }
+                        },
+                        "4": {
+                          "type": "object",
+                          "properties": {
+                            "difficultyUpdateAvailable": {
+                              "type": "boolean",
+                              "example": false,
+                              "default": true
+                            },
+                            "difficultyUpdateKeywordUnits": {
+                              "type": "integer",
+                              "example": 4344,
+                              "default": 0
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=update_keyword_difficulty": {
+      "get": {
+        "summary": "Request KW Difficulty Update",
+        "description": "Requests an update for one or multiple projects.",
+        "operationId": "request-kw-difficulty-update",
+        "parameters": [
+          {
+            "name": "projectIds",
+            "in": "query",
+            "description": "Comma separated project IDs: 1,2,3. Use -1 to start an update for all your projects.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"planKeywordUnits\": 160000,\n  \"availableKeywordUnits\": 159926.5,\n  \"difficultyUpdateKeywordUnits\": 4456,\n  \"remainingKeywordUnits\": 155470.5,\n  \"projectInfo\": {\n    \"2\": {\n      \"difficultyUpdateAvailable\": true,\n      \"difficultyUpdateKeywordUnits\": 112,\n      \"updateStarted\": true\n    },\n    \"4\": {\n      \"difficultyUpdateAvailable\": true,\n      \"difficultyUpdateKeywordUnits\": 4344,\n      \"updateStarted\": true\n    }\n    \n  }\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "planKeywordUnits": {
+                      "type": "integer",
+                      "example": 160000,
+                      "default": 0
+                    },
+                    "availableKeywordUnits": {
+                      "type": "number",
+                      "example": 159926.5,
+                      "default": 0
+                    },
+                    "difficultyUpdateKeywordUnits": {
+                      "type": "integer",
+                      "example": 4456,
+                      "default": 0
+                    },
+                    "remainingKeywordUnits": {
+                      "type": "number",
+                      "example": 155470.5,
+                      "default": 0
+                    },
+                    "projectInfo": {
+                      "type": "object",
+                      "properties": {
+                        "2": {
+                          "type": "object",
+                          "properties": {
+                            "difficultyUpdateAvailable": {
+                              "type": "boolean",
+                              "example": true,
+                              "default": true
+                            },
+                            "difficultyUpdateKeywordUnits": {
+                              "type": "integer",
+                              "example": 112,
+                              "default": 0
+                            },
+                            "updateStarted": {
+                              "type": "boolean",
+                              "example": true,
+                              "default": true
+                            }
+                          }
+                        },
+                        "4": {
+                          "type": "object",
+                          "properties": {
+                            "difficultyUpdateAvailable": {
+                              "type": "boolean",
+                              "example": true,
+                              "default": true
+                            },
+                            "difficultyUpdateKeywordUnits": {
+                              "type": "integer",
+                              "example": 4344,
+                              "default": 0
+                            },
+                            "updateStarted": {
+                              "type": "boolean",
+                              "example": true,
+                              "default": true
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=export_ranking": {
+      "get": {
+        "summary": "Schedule Ranking Data Export",
+        "description": "Schedules a ranking data export for one or all projects in your AWR account.",
+        "operationId": "export-ranking-data",
+        "parameters": [
+          {
+            "name": "project",
+            "in": "query",
+            "description": "The name of the project in your account.<br/>If you don't add the parameter, all projects will be included.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "The oldest date, yyyy-mm-dd format.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "stopDate",
+            "in": "query",
+            "description": "The most recent date, yyyy-mm-dd format.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "addProjectName",
+            "in": "query",
+            "description": "Whether to include the project name for each ranking data.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "yes",
+                "no"
+              ],
+              "default": "no"
+            }
+          },
+          {
+            "name": "encodeurl",
+            "in": "query",
+            "description": "Whether to encode URLs.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "csv",
+                "json"
+              ],
+              "default": "csv"
+            }
+          },
+          {
+            "name": "searchEngineId",
+            "in": "query",
+            "description": "Use -1 for All Search Engines.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": -1
+            }
+          },
+          {
+            "name": "keywordGroupId",
+            "in": "query",
+            "description": "Use -1 for All Keywords, -2 for Branded, -3 for Non Branded.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": -1
+            }
+          },
+          {
+            "name": "websiteId",
+            "in": "query",
+            "description": "Use -1 for All Websites.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": -1
+            }
+          },
+          {
+            "name": "addSearchIntent",
+            "in": "query",
+            "description": "Whether to add keyword search intent info.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "addTitleLinks",
+            "in": "query",
+            "description": "Whether to add SERP title links.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "addPixelPosition",
+            "in": "query",
+            "description": "Whether to add pixel position info.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "addSerpFeatures",
+            "in": "query",
+            "description": "Whether to add all found SERP features.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"response_code\": 0,\n  \"message\": \"OK\",\n  \"details\": \"https://api.awrcloud.com/v2/get.php?action=get_export&token=my+token&project=My+Project&fileName=2023-08-22-2023-08-23_csv_1_-1_-1_false_false_false\"\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "response_code": {
+                      "type": "integer",
+                      "example": 0,
+                      "default": 0
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "details": {
+                      "type": "string",
+                      "example": "https://api.awrcloud.com/v2/get.php?action=get_export&token=my+token&project=My+Project&fileName=2023-08-22-2023-08-23_csv_1_-1_-1_false_false_false"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=get_export": {
+      "get": {
+        "summary": "Get Ranking Data Export",
+        "description": "Can be used to download a ZIP file with the ranking export that was previously scheduled with the <a href=\"https://awr.readme.io/reference/export-ranking-data\">Schedule Ranking Data Export</a> API call.",
+        "operationId": "get-export-data",
+        "parameters": [
+          {
+            "name": "project",
+            "in": "query",
+            "description": "The project name used in the <a href=\"https://awr.readme.io/reference/export-ranking-data\">Export Ranking Data</a> API call.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fileName",
+            "in": "query",
+            "description": "The fileName received from the call to the <a href=\"https://awr.readme.io/reference/export-ranking-data\">Export Ranking Data</a> API.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "\"Date\",\"Search Engine\",\"Keyword\",\"Keyword Group\",\"Website\",\"URL\",\"Position\",\"Best\",\"Competition\",\"Average monthly searches\",\"CPC\",\"Page\",\"Type\",\"Local Searches\",\"Estimated Daily Traffic\",\"Search Intent\",\"Previous Search Intent\",\"Title\",\"Pixel position\",\"Serp Features\"\n\"2016-11-02\",\"Google\",\"thanksgiving recipes\",\"National Targeted Keywords\",\"direct.franksredhot.com\",\"\",\"-\",\"-\",\"Low\",\"22200\",\"$2.29\",\"-\",\"-\",\"-\",\"-\",\"Informational;Commercial\",\"Informational\",\"-\",\"2390.0\",\"Organic;Local pack;Reviews;Single Image Thumbnails;Multi Image Thumbnails\"\n\"2016-11-02\",\"Google\",\"thanksgiving recipes\",\"National Targeted Keywords\",\"youtube.com/watch?v=4b8RsqqPmAg\",\"\",\"-\",\"-\",\"Low\",\"22200\",\"$2.29\",\"-\",\"-\",\"-\",\"-\",\"Navigational;Commercial\",\"Navigational;Commercial\",\"-\",\"1942.0\",\"Organic;Local pack;Reviews;Single Image Thumbnails;Multi Image Thumbnails\"\n\"2016-11-02\",\"Google\",\"thanksgiving recipes\",\"National Targeted Keywords\",\"allrecipes.com\",\"\",\"-\",\"-\",\"Low\",\"22200\",\"$2.29\",\"-\",\"-\",\"-\",\"-\",\"Informational;Commercial\",\"Informational;Commercial\",\"What is the best thanksgiving recipe?\",\"2734.0\",\"Organic;Local pack;Reviews;Single Image Thumbnails;Multi Image Thumbnails\""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=topsites_export": {
+      "get": {
+        "summary": "Schedule Top Sites Export",
+        "description": "Schedules a top sites export for a single project.",
+        "operationId": "export-top-sites",
+        "parameters": [
+          {
+            "name": "project",
+            "in": "query",
+            "description": "The name of the project in your account.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "My Project"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "The oldest date, yyyy-mm-dd format.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "stopDate",
+            "in": "query",
+            "description": "The most recent date, yyyy-mm-dd format.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "encodeurl",
+            "in": "query",
+            "description": "Whether to encode URLs.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "topUrls",
+            "in": "query",
+            "description": "How many URLs to export for each page.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 200
+            }
+          },
+          {
+            "name": "searchEngine",
+            "in": "query",
+            "description": "JSON array with one or multiple search Engine IDs: [1, 2, 3]. Leave it out to get data for all search engines.",
+            "schema": {
+              "type": "string",
+              "format": "json"
+            }
+          },
+          {
+            "name": "keywordGroupId",
+            "in": "query",
+            "description": "Alternative to keywordGroupName. JSON array with one or multiple keyword group IDs: [1, 2, 3]. Leave it out to get data for All Keywords.",
+            "schema": {
+              "type": "string",
+              "format": "json"
+            }
+          },
+          {
+            "name": "keywordGroupName",
+            "in": "query",
+            "description": "Alternative to keywordGroupId. JSON array with one or multiple keyword group names: [\"keyword group 1\", \"keyword group 2\", \"keyword group 3\"]. Leave it out to get data for All Search Engines.",
+            "schema": {
+              "type": "string",
+              "format": "json"
+            }
+          },
+          {
+            "name": "sponsored",
+            "in": "query",
+            "description": "Whether to include sponsored results in your export.",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "name": "resultType",
+            "in": "query",
+            "description": "JSON array with one or more result types to include. If set, your export will only include these types. Possible values: ads bottom, ads shop, ads top, aggregator units, ai overviews, app, buying guides, carousel, deals, direct answer, discussions & forums, events, explore brands, faq, featured snippets (includes all subtypes: paragraph, list, table, video), featured snippets list, featured snippets paragraph, featured snippets table, featured snippets video, filter by sidebar, flights, how-to, images, interesting finds, jobs, knowledge panel, local pack, multi image thumbnails, organic, people also ask, product knowledge panel, products, q&a, recipes, related products, reviews, single image thumbnails, sitelinks, sponsored (can only be added if the sponsored parameter is not set to false), top stories, tweets, videos, visual stories. Example: [\"featured snippets paragraph\", \"featured snippets list\"].",
+            "schema": {
+              "type": "string",
+              "format": "json"
+            }
+          },
+          {
+            "name": "pixelPosition",
+            "in": "query",
+            "description": "Whether to include the Pixel Position column in your export.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "xlsx",
+            "in": "query",
+            "description": "Whether to export an XLSX instead of a CSV.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "addPixelHeight",
+            "in": "query",
+            "description": "Whether to add the Pixel Height column.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "addClickShare",
+            "in": "query",
+            "description": "Whether to add the Click Share column.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"response_code\": 0,\n  \"message\": \"OK\",\n  \"details\": \"https://api.awrcloud.com/v2/get.php?action=get_topsites&token=token&project=my+project&fileName=my+project_top_sites_2023-08-22-2023-08-28_c1a47f3c54a1862716f77fc0f74a435d&suId=59611283\"\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "response_code": {
+                      "type": "integer",
+                      "example": 0,
+                      "default": 0
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "details": {
+                      "type": "string",
+                      "example": "https://api.awrcloud.com/v2/get.php?action=get_topsites&token=token&project=my+project&fileName=my+project_top_sites_2023-08-22-2023-08-28_c1a47f3c54a1862716f77fc0f74a435d&suId=59611283"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=get_topsites": {
+      "get": {
+        "summary": "Get Top Sites",
+        "description": "Can be used to download a <a href=\"https://awr.readme.io/reference/export-top-sites\">previously scheduled</a> top sites export.",
+        "operationId": "get-top-sites",
+        "parameters": [
+          {
+            "name": "project",
+            "in": "query",
+            "description": "The name used <a href=\"https://awr.readme.io/reference/export-top-sites\">when scheduling</a> the export.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fileName",
+            "in": "query",
+            "description": "The fileName supplied by <a href=\"https://awr.readme.io/reference/export-top-sites\">Schedule Top Sites Export</a>.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=gwt_export": {
+      "get": {
+        "summary": "Schedule GSC Data Export",
+        "description": "Schedules a Google Search Console (GSC) data export for a project in your AWR account.",
+        "operationId": "export-gwt-data",
+        "parameters": [
+          {
+            "name": "project",
+            "in": "query",
+            "description": "The name of the project in your account.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "My Project"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "The oldest date, yyyy-mm-dd format.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "stopDate",
+            "in": "query",
+            "description": "The most recent date, yyyy-mm-dd format.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "allDevices",
+                "desktop",
+                "mobile",
+                "tablet",
+                "desktopVsMobile",
+                "desktopVsTablet",
+                "mobileVsTablet"
+              ],
+              "default": "allDevices"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\"response_code\":0,\"message\":\"OK\",\"details\":\"https://api.awrcloud.com/v2/get.php?action=get_gwt&token=token&project=My+Project&fileName=My+Project-gwt-api-2023-08-21-2023-08-22-1\"}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "response_code": {
+                      "type": "integer",
+                      "example": 0,
+                      "default": 0
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "details": {
+                      "type": "string",
+                      "example": "https://api.awrcloud.com/v2/get.php?action=get_gwt&token=token&project=My+Project&fileName=My+Project-gwt-api-2023-08-21-2023-08-22-1"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=get_gwt": {
+      "get": {
+        "summary": "Get GSC Data Export",
+        "description": "Can be used to download a <a href=\"https://awr.readme.io/reference/export-gwt-data\">previously scheduled</a> Google Search Console (GSC) export.",
+        "operationId": "get-gwt-export-data",
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "query",
+            "description": "The fileName supplied when <a href=\"https://awr.readme.io/reference/export-gwt-data\">scheduling</a> the Google Search Console (GWT) export, example: fileName=<b>My+Project-gwt-api-2023-08-21-2023-08-22-1</b>.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "\"Keyword\",\"Clicks Opportunities\",\"Impressions\",\"Impressions Change\",\"Clicks\",\"Clicks Change\",\"Avg Position\",\"Avg Position Change\",\"CTR\",\"CTR Change\"\nomelette recipe,\"-\",\"2347\",\"-37\",\"1134\",\"14\",\"1.16\",\"0.06\",\"48\",\"1\"\ncheesecake recipe,\"12\",\"679\",\"-34\",\"269\",\"-38\",\"1.01\",\"0.01\",\"40\",\"-3\"\ncuba libre recipe,\"7\",\"429\",\"18\",\"164\",\"25\",\"1.00\",\"-0.01\",\"38\",\"4\""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=visibility_export": {
+      "get": {
+        "summary": "Schedule Visibility Data Export",
+        "description": "Schedules a visibility export.",
+        "operationId": "export-visibility-data",
+        "parameters": [
+          {
+            "name": "project",
+            "in": "query",
+            "description": "The name of the project in your account.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "My Project"
+            }
+          },
+          {
+            "name": "stopDate",
+            "in": "query",
+            "description": "The date for which to export metrics, yyyy-mm-dd format.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "The date with which to compare metrics, yyyy-mm-dd format.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "keywordgroup",
+            "in": "query",
+            "description": "A keyword group's name. You can find the available keyword groups for this project via the <a href=\"https://awr.readme.io/reference/get-project-details\">get details</a> API call.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "searchengine",
+            "in": "query",
+            "description": "A search engine's ID. You can find this project's search engines by using the <a href=\"https://awr.readme.io/reference/get-project-details\">get details</a> API call.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "alldates",
+            "in": "query",
+            "description": "Whether to export all data in between the provided dates.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false"
+              ],
+              "default": "false"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"response_code\": 0,\n  \"message\": \"OK\",\n  \"details\": \"https://api.awrcloud.com/v2/get.php?action=get_visibility&token=token&project=My+Project&fileName=visibility_api-My+Project_2023-07-26-2023-08-26\"\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "response_code": {
+                      "type": "integer",
+                      "example": 0,
+                      "default": 0
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "details": {
+                      "type": "string",
+                      "example": "https://api.awrcloud.com/v2/get.php?action=get_visibility&token=token&project=My+Project&fileName=visibility_api-My+Project_2023-07-26-2023-08-26"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=get_visibility": {
+      "get": {
+        "summary": "Get Visibility Export",
+        "description": "Can be used to download a <a href=\"https://awr.readme.io/reference/export-visibility-data\">previously scheduled</a> Visibility export.",
+        "operationId": "get-visibility-export",
+        "parameters": [
+          {
+            "name": "project",
+            "in": "query",
+            "description": "The name used <a href=\"https://awr.readme.io/reference/export-visibility-data\">when scheduling</a> the export.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fileName",
+            "in": "query",
+            "description": "The fileName supplied when <a href=\"https://awr.readme.io/reference/export-visibility-data\">scheduling</a> the Visibility export, eg: fileName=visibility_api-My+Project_2023-07-26-2023-08-26.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=export_pages": {
+      "get": {
+        "summary": "Schedule Landing Pages Export",
+        "description": "Schedules a landing pages export for all dates in the startDate - stopDate interval.",
+        "operationId": "export-landing-pages-data",
+        "parameters": [
+          {
+            "name": "project",
+            "in": "query",
+            "description": "The name of the project in your account.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "My Project"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "The oldest date, yyyy-mm-dd format.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "stopDate",
+            "in": "query",
+            "description": "The most recent date, yyyy-mm-dd format.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "searchengine",
+            "in": "query",
+            "description": "A search engine's ID. You can find this project's search engines by using the <a href=\"https://awr.readme.io/reference/get-project-details\">get details</a> API call. Leave it blank to use a random search engine.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "keywordgroup",
+            "in": "query",
+            "description": "A keyword group's name. You can find the available keyword groups for this project via the <a href=\"https://awr.readme.io/reference/get-project-details\">get details</a> API call. Leave it blank to include all keywords.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "website",
+            "in": "query",
+            "description": "A website's name. You can find the available websites for this project via the <a href=\"https://awr.readme.io/reference/get-project-details\">get details</a> API call.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "encodeurl",
+            "in": "query",
+            "description": "Encodes the landing pages URLs.",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"response_code\": 0,\n  \"message\": \"OK\",\n  \"details\": \"https://api.awrcloud.com/v2/get.php?action=get_pages&token=token&project=My+Project&fileName=landingpages_api-My+Project_2023-08-20-2023-08-27\"\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "response_code": {
+                      "type": "integer",
+                      "example": 0,
+                      "default": 0
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "details": {
+                      "type": "string",
+                      "example": "https://api.awrcloud.com/v2/get.php?action=get_pages&token=token&project=My+Project&fileName=landingpages_api-My+Project_2023-08-20-2023-08-27"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=get_pages": {
+      "get": {
+        "summary": "Get Landing Pages Export",
+        "description": "Can be used to download a <a href=\"https://awr.readme.io/reference/export-landing-pages-data\">previously scheduled</a> Landing Pages export.",
+        "operationId": "get-landing-pages-export",
+        "parameters": [
+          {
+            "name": "project",
+            "in": "query",
+            "description": "The name used <a href=\"https://awr.readme.io/reference/export-landing-pages-data\">when scheduling</a> the export.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fileName",
+            "in": "query",
+            "description": "The fileName supplied when <a href=\"https://awr.readme.io/reference/export-landing-pages-data\">scheduling</a> the Landing Pages export, eg: fileName=landingpages_api-My+Project_2023-08-20-2023-08-27",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=export_keyword_difficulty": {
+      "get": {
+        "summary": "Get Keyword Difficulty Data",
+        "description": "Retrieves Keyword Difficulty data.",
+        "operationId": "get-keyword-difficulty-data",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "searchEngineId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": -1
+            }
+          },
+          {
+            "name": "keywordGroupId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": -1
+            }
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "plain",
+                "download"
+              ],
+              "default": "plain"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "project,main website,keyword,keyword groups,search engine,position,global difficulty,domain difficulty,URL difficulty,content score,search intent,secondary search intent,previous search intent,previous secondary search intent,serp features,searches,difficulty update\nAllrecipes,allrecipes.com,pancakes,All keywords,,1,42,42,15,50,Navigational,Informational,Commercial,,\"organic,faq,reviews,knowledge panel,twitter,site link\",1000,2023-08-01\nAllrecipes,allrecipes.com,schnitzel,All keywords,,1,32,40,16,31,Informational,Commercial,Informational,Commercial,\"organic,reviews,related questions,twitter,site link,video\",210,2023-08-01\nAllrecipes,allrecipes.com,steak,All keywords,,1,36,50,22,28,Informational,Commercial,Informational,Commercial,\"organic,reviews,related questions,image\",70,2023-08-01"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=export_search_volume": {
+      "get": {
+        "summary": "Get Search Volume Data",
+        "description": "Retrieves AdWords data.",
+        "operationId": "get-search-volume-data",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "A project ID among the ones returned by <a href=\"https://awr.readme.io/reference/get-projects-1\">Get Projects</a>.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataType",
+            "in": "query",
+            "description": "Whether to return searches or trends data.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "searchVolume",
+                "trends"
+              ]
+            }
+          },
+          {
+            "name": "keywordGroupIds",
+            "in": "query",
+            "description": "A comma separated list of IDs. Use:<br/> -1 for All Keywords (default)<br/> -2 for Branded<br/> -3 for Non-Branded<br/> or some from your project as returned by <a href=\"https://awr.readme.io/reference/get-keyword-groups\">Get Keyword Groups</a>.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "description": "Whether to trigger a file download or return a plain text response.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "download",
+                "plain"
+              ],
+              "default": "download"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "search volume": {
+                    "value": "keyword,keyword groups,location,search volume,local search volume,global search volume\nbest dentist,Branded;best group;dentist group,\"Green Bay, WI, USA\",12100,10,18100\nbest dentist,Branded;best group;dentist group,USA,12100,-,18100\nbest dentist green bay,Non-Branded;best group,\"Green Bay, WI, USA\",30,10,30\nbest dentist green bay,Non-Branded;best group,USA,30,-,30\ndentist,Non-Branded;best group;dentist group,\"Green Bay, WI, USA\",1220000,390,2740000\ndentist,Non-Branded;best group;dentist group,USA,1220000,-,2740000"
+                  },
+                  "search trends": {
+                    "value": "keyword,keyword groups,location,2022-07,2022-08,2022-09,2022-10,2022-11,2022-12,2023-01,2023-02,2023-03,2023-04,2023-05,2023-06,2023-07,last quarter, previous quarter, quarterly trends change, quarterly search trends (positive / negative / stable)\nwhere does my website rank for keywords,All keywords,USA,90,90,110,110,170,140,140,140,170,210,170,110,90,370,520,-28.85%,negative\nwhere does my site rank,All keywords,USA,90,90,90,110,170,110,110,110,140,140,170,90,90,350,390,-10.26%,negative"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=export_ctr": {
+      "get": {
+        "summary": "Get CTR Data",
+        "description": "Exports CTR data from the <a href=\"https://www.advancedwebranking.com/ctrstudy/\">Google Organic CTR Tool</a>.",
+        "operationId": "get-click-through-rate-data",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "description": "The month for which to export data. Example: 2023-07-15 for July 2023. The day should always be 15.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "searches-type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "allSearches",
+                "branded",
+                "search-intent",
+                "long-tail",
+                "categories"
+              ]
+            }
+          },
+          {
+            "name": "value",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "exact",
+                "average"
+              ]
+            }
+          },
+          {
+            "name": "device",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "allDevices",
+                "desktop",
+                "mobile",
+                "tablet"
+              ],
+              "default": "allDevices"
+            }
+          },
+          {
+            "name": "audience",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "international",
+                "us",
+                "uk",
+                "aus"
+              ],
+              "default": "international"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "csv",
+                "json"
+              ],
+              "default": "csv"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\"response_code\":0,\"message\":\"OK\",\"details\":[\"position,web_ctr,web_ws,web_kws,mobile_ctr,mobile_ws,mobile_kws\\\\n1,32.52,43018,742283,28.52,45556,1862953\\\\n2,15.29,35731,505293,14.21,44288,1263303\\\\n3,8.89,42007,1174025,8.92,35434,483706\\\\n4,5.89,42297,1050008,5.97,35456,458578\\\\n5,4.31,36057,427474,4.13,43098,939399\\\\n6,3.11,36511,394321,3,43980,848953\\\\n7,2.37,37356,365033,2.2,45133,773506\\\\n8,1.85,37257,331762,1.68,45525,698498\\\\n9,1.34,45686,610604,1.52,36864,288140\\\\n10,1.14,44580,483470,1.28,35736,227623\\\\n11,1.1,41370,323384,1.15,33420,156251\\\\n12,1.12,37289,206285,1.12,30486,107090\\\\n13,1.11,28660,84339,1.22,33116,142336\\\\n14,1.09,26840,69380,1.32,30004,104117\\\\n15,1.05,26139,60750,1.4,27679,82324\\\\n16,1.03,25331,54765,1.46,26076,68478\\\\n17,0.97,24544,49901,1.47,24732,58925\\\\n18,0.91,23948,46272,1.43,23852,52284\\\\n19,0.82,23783,43119,1.42,22766,46605\\\\n20,0.72,23068,40547,1.35,21623,41294\\\\n\"]}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "response_code": {
+                      "type": "integer",
+                      "example": 0,
+                      "default": 0
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "details": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "position,web_ctr,web_ws,web_kws,mobile_ctr,mobile_ws,mobile_kws\\n1,32.52,43018,742283,28.52,45556,1862953\\n2,15.29,35731,505293,14.21,44288,1263303\\n3,8.89,42007,1174025,8.92,35434,483706\\n4,5.89,42297,1050008,5.97,35456,458578\\n5,4.31,36057,427474,4.13,43098,939399\\n6,3.11,36511,394321,3,43980,848953\\n7,2.37,37356,365033,2.2,45133,773506\\n8,1.85,37257,331762,1.68,45525,698498\\n9,1.34,45686,610604,1.52,36864,288140\\n10,1.14,44580,483470,1.28,35736,227623\\n11,1.1,41370,323384,1.15,33420,156251\\n12,1.12,37289,206285,1.12,30486,107090\\n13,1.11,28660,84339,1.22,33116,142336\\n14,1.09,26840,69380,1.32,30004,104117\\n15,1.05,26139,60750,1.4,27679,82324\\n16,1.03,25331,54765,1.46,26076,68478\\n17,0.97,24544,49901,1.47,24732,58925\\n18,0.91,23948,46272,1.43,23852,52284\\n19,0.82,23783,43119,1.42,22766,46605\\n20,0.72,23068,40547,1.35,21623,41294\\n"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/get.php?action=update": {
+      "post": {
+        "summary": "Update Project",
+        "description": "This operation adds or removes websites, keywords, competitors or search engines in a project. It can also change the search depth or the update frequency.",
+        "operationId": "update-project",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "project"
+                ],
+                "properties": {
+                  "project": {
+                    "type": "string",
+                    "description": "Your project's name as shown in your AWR account. <br/> Use URL encoding, for example: \"My Project/DE\" => \"My Project%2FDE\"."
+                  },
+                  "depth": {
+                    "type": "integer",
+                    "description": "Between 1 and 10 (pages).",
+                    "format": "int32"
+                  },
+                  "frequency": {
+                    "type": "string",
+                    "description": "Your project's update frequency.",
+                    "enum": [
+                      "daily",
+                      "weekly",
+                      "biweekly",
+                      "monthly",
+                      "ondemand"
+                    ]
+                  },
+                  "websites": {
+                    "type": "array",
+                    "items": {
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "aliases": {
+                          "type": "string",
+                          "description": "Comma separated list of values, example: .yahoo.com,yahoo.com,subdomain.yahoo.com,yahoo.com/URL,yahoo.com/URL,https://www.youtube.com/c/YahooChannel"
+                        },
+                        "color_r": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "color_g": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "color_b": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "operation": {
+                          "type": "string",
+                          "description": "0 - add<br/>1 - remove<br/>2 - edit",
+                          "enum": [
+                            "0",
+                            "1",
+                            "2"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "name"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "kw_groups": {
+                          "type": "array",
+                          "description": "[\"keyword group 1\", \"keyword group 2\"]",
+                          "default": [],
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "color_r": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "color_g": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "color_b": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "operation": {
+                          "type": "string",
+                          "description": "0 - add<br/>1 - remove<br/>2 - edit",
+                          "enum": [
+                            "0",
+                            "1",
+                            "2"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "name"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "addSearchengines": {
+                    "type": "object",
+                    "description": "This allows you to add search engines to your project.",
+                    "properties": {
+                      "google": {
+                        "type": "array",
+                        "description": "Use this object to add a Google search engine.",
+                        "items": {
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "This field allows you to add a Google search engine with or without location. If you don't add a location or language, the default is google.com United States in english.",
+                              "default": "Google",
+                              "enum": [
+                                "Google"
+                              ]
+                            },
+                            "country": {
+                              "type": "string",
+                              "description": "You can find a list of all countries here: https://www.advancedwebranking.com/cloud/api/countries.csv<br>Use the short form with two letters. Example: DE (for Germany).",
+                              "default": "US"
+                            },
+                            "se_type": {
+                              "type": "string",
+                              "description": "This is the search engine vertical.",
+                              "default": "desktop universal",
+                              "enum": [
+                                "desktop universal",
+                                "desktop organic",
+                                "desktop organic and places",
+                                "desktop places",
+                                "desktop adwords",
+                                "desktop images",
+                                "desktop video",
+                                "desktop maps",
+                                "desktop shopping",
+                                "desktop jobs",
+                                "mobile universal",
+                                "mobile organic",
+                                "mobile images",
+                                "mobile video",
+                                "mobile news"
+                              ]
+                            },
+                            "language": {
+                              "type": "string",
+                              "description": "You can find a list of all languages here: https://www.advancedwebranking.com/cloud/api/languages.csv<br/>Use the short form with two letters. Example: de (for German).",
+                              "default": "en"
+                            },
+                            "location": {
+                              "type": "string",
+                              "description": "You can find a list of all locations here: https://developers.google.com/google-ads/api/data/geotargets.<br/>Example: San Francisco, CA."
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "country",
+                            "se_type",
+                            "language"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "other": {
+                        "type": "array",
+                        "description": "Use this object to add any other predefined search engines.",
+                        "items": {
+                          "properties": {
+                            "awr_id": {
+                              "type": "integer",
+                              "description": "Here you can add any other predefined search engine. The full list of search engines that AWR supports is here: https://app.advancedwebranking.com/searchengines<br> Add only the search engine ID from the third column in the list. Example: 1287784873 (for Google Play).",
+                              "format": "int32"
+                            }
+                          },
+                          "required": [
+                            "awr_id"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    }
+                  },
+                  "removeSearchengines": {
+                    "type": "array",
+                    "description": "This allows you to remove search engines from your project.",
+                    "items": {
+                      "properties": {
+                        "awr_id": {
+                          "type": "integer",
+                          "description": "Enter the id of the search engine you want to delete. You can find all search engines ids from your project from this API: https://awr.readme.io/reference/get-project-details",
+                          "format": "int32"
+                        }
+                      },
+                      "required": [
+                        "awr_id"
+                      ],
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"response_code\": 0,\n  \"message\": \"OK\"\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "response_code": {
+                      "type": "integer",
+                      "example": 0,
+                      "default": 0
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "OK"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}

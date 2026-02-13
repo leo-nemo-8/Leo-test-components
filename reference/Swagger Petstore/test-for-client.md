@@ -98,7 +98,7 @@ Now let’s show you how to apply these attribute filters to the event, using th
 
 **Method 1: Using the AND logic to club attributes filters**
 
-If we use the AND logic to apply all the attribute filters listed above, then your analysis will be limited to a set of users who have _only viewed Puma Running Pants, AND on the page,[[www.companyname.com//women/pants](](http://www.companyname.com//women/pants]\() AND are from the US AND use an iOS device._
+If we use the AND logic to apply all the attribute filters listed above, then your analysis will be limited to a set of users who have _only viewed Puma Running Pants, AND on the page, AND are from the US AND use an iOS device._
 
 **Implications:** _So, using the AND logic to club event attributes you can narrow down the scope of analysis to a particular set of users whose actions fall in line with a sum of all the attributes._
 

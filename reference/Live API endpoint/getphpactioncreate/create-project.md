@@ -7,5 +7,5 @@ excerpt: >-
 api:
   file: restore.json
   operationId: create-project
-hidden: false
+hidden: true
 ---

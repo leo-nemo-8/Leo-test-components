@@ -2,9 +2,9 @@
 title: /get.php?action=create
 hidden: true
 ---
-| Name | j  | fhh |
-| :--- | :- | :-- |
-|      | \< |     |
-|      |    |     |
+| Name | j        | fhh |
+| :--- | :------- | :-- |
+|      | \<ajifjk |     |
+|      |          |     |
 
 <br />

@@ -26,7 +26,7 @@ hidden: true
       </td>
 
       <td style={{ textAlign: "left" }}>
-        <a/>
+        <a />
       </td>
 
       <td style={{ textAlign: "left" }}>

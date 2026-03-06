@@ -35,8 +35,7 @@ Use (at least) the following payload in the Order:Create API
 "reference": "REF1234",
 "description": "Split payment transations",
 "amount": {
-"value": 2500,
-1000,
+"value": 1000,
 "currency": "EUR"
 },
 "optimize": {
@@ -45,8 +44,7 @@ Use (at least) the following payload in the Order:Create API
 "serviceId": "SL-1390-9723",
 "fee": "receiver",
 "amount": {
-"value": 1000,
-250,
+"value": 250,
 "currency": "EUR"
 }
 },
@@ -54,8 +52,7 @@ Use (at least) the following payload in the Order:Create API
 "serviceId": "SL-4567-1234",
 "fee": "receiver",
 "amount": {
-"value": 1500,
-250,
+"value": 250,
 "currency": "EUR",
 
 }
@@ -72,6 +69,8 @@ In the example above a 10 EUR single payment is created for SL-6515-0300 (from M
 
 This results in a 10 EUR being added to the funds Merchant A (since Merchant A) is the owner of the transaction, but 2x EUR 2,50 is deducted and added to the funds of Merchant B and merchant C.
 
-The reciple below, gives you a detailed instruction how to create a split payment.
+The reciple recipe below, gives you a detailed instruction how to create a split payment.
+
+<Recipe />
 
 <br />

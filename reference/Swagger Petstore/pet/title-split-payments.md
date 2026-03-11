@@ -15,6 +15,7 @@ hidden: true
 metadata:
 robots: index
 ---
+
 Splitting payment is ideal for Marketplaces as it allows you to split payments between services/sales location (over different merchants). This make it possible for your customers to purchase goods from multiple sellers in a single basket.
 
 A marketplace platform can split the payment between various parties, and even choose to retain a portion of the funds in their own balance as a fee.
@@ -71,5 +72,11 @@ This results in a 10 EUR being added to the funds Merchant A (since Merchant A) 
 
 The reciple recipe below, gives you a detailed instruction how to create a split payment.
 
+| fdfdsffg     | sdgsggs |                  |          |
+| :----------- | :------ | :--------------- | :------- |
+| fdsfsdfsfsdf | fsdfds  | fsdfdsfdsfsdfsfs | fsdfsfsf |
+|              |         |                  |          |
+
+<br />
 
 <br />

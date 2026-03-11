@@ -72,10 +72,10 @@ This results in a 10 EUR being added to the funds Merchant A (since Merchant A) 
 
 The reciple recipe below, gives you a detailed instruction how to create a split payment.
 
-| fdfdsffg     | sdgsggs |                  |          |
-| :----------- | :------ | :--------------- | :------- |
-| fdsfsdfsfsdf | fsdfds  | fsdfdsfdsfsdfsfs | fsdfsfsf |
-|              |         |                  |          |
+| fdfdsffg      | sdgsggs |                  |          |
+| :------------ | :------ | :--------------- | :------- |
+| :dsfsdfsfsdf: | fsdfds  | fsdfdsfdsfsdfsfs | fsdfsfsf |
+|               |         |                  |          |
 
 <br />
 

@@ -107,7 +107,7 @@ items array element field descriptions:
 | outstanding_ratio  | double | Outstanding ratio                                                  |
 | lot_size           | int    | Shares per lot                                                     |
 | strike             | double | Strike price                                                       |
-| in_out_price       | double | In-the-money (> 0) / Out-of-the-money (\<0)                        |
+| in_out_price       | double | In-the-money (>0) / Out-of-the-money (\<0)                         |
 | delta              | double | Delta                                                              |
 | leverage_ratio     | double | Leverage ratio                                                     |
 | effective_leverage | double | Effective leverage                                                 |

@@ -148,3 +148,56 @@ Different CRMs handle combinations of these filter types differently.
 * For Date and Amount filters, the filters are applied in an "AND" operation. That means the record must match **all** those conditions. For example, `(created_after = XYZ AND updated_before = ABC)`
 * If you use filters from different groups — like one for date and another for owner — Salesforce combines them using **OR**. So a record will be shown if it matches **any** of the filter groups. For example, `(created_after = XYZ AND updated_before = ABC) AND (owner_id in [...]) OR (contact_id in [...])`
 * For `crm_engagements_direction` , do not give this value, if your type includes NOTE or TASKS.
+
+| **Filter Type**                   | Salesforce | Hubspot | Zoho CRM | Freshworks | Zendesk CRM | Sugar CRM | Pipedrive | Leadsquared | Brevo | Close CRM | HighLevel |
+| --------------------------------- | :--------: | :-----: | :------: | :--------: | :---------: | :-------- | :-------- | :---------- | :---- | :-------- | :-------- |
+| `crm_accounts_created_after`      |      A     |    A    |     A    |      A     |      A      | A         | NA        | A           | A     | A         | NA        |
+| `crm_accounts_created_before`     |      A     |    A    |     A    |      A     |      A      | A         | NA        | A           | NA    | A         | NA        |
+| `crm_accounts_updated_after`      |      A     |    A    |     A    |      A     |      A      | A         | A         | A           | A     | A         | NA        |
+| `crm_accounts_updated_before`     |      A     |    A    |     A    |      A     |      A      | A         | A         | A           | NA    | A         | NA        |
+| `crm_accounts_owner_id[]`         |      A     |    A    |     A    |      A     |      A      | A         | A         | A           | NA    | A         | NA        |
+| `crm_accounts_created_by_id[]`    |      A     |    A    |     A    |      A     |      A      | A         | NA        | A           | NA    | A         | NA        |
+| `crm_accounts_contact_id[]`       |     NA     |    A    |    NA    |     NA     |      NA     | NA        | NA        | A           | A     | NA        | NA        |
+| `crm_contacts_created_after`      |      A     |    A    |     A    |      A     |      A      | A         | NA        | A           | A     | A         | A         |
+| `crm_contacts_created_before`     |      A     |    A    |     A    |      A     |      A      | A         | NA        | A           | NA    | A         | A         |
+| `crm_contacts_updated_after`      |      A     |    A    |     A    |      A     |      A      | A         | A         | A           | A     | A         | A         |
+| `crm_contacts_updated_before`     |      A     |    A    |     A    |      A     |      A      | A         | A         | A           | NA    | A         | A         |
+| `crm_contacts_owner_id[]`         |      A     |    A    |     A    |      A     |      A      | A         | A         | NA          | NA    | A         | A         |
+| `crm_contacts_created_by_id[]`    |      A     |    A    |     A    |      A     |      A      | A         | NA        | NA          | NA    | A         | NA        |
+| `crm_contacts_account_id[]`       |      A     |    A    |     A    |      A     |      NA     | A         | A         | NA          | NA    | A         | NA        |
+| `crm_contacts_email[]`            |      A     |    A    |     A    |      A     |      A      | A         | NA        | A           | A     | NA        | A         |
+| `crm_deals_created_after`         |      A     |    A    |     A    |      A     |      A      | A         | NA        | A           | A     | A         | A         |
+| `crm_deals_created_before`        |      A     |    A    |     A    |      A     |      A      | A         | NA        | A           | NA    | A         | A         |
+| `crm_deals_updated_after`         |      A     |    A    |     A    |      A     |      A      | A         | A         | A           | A     | A         | NA        |
+| `crm_deals_updated_before`        |      A     |    A    |     A    |      A     |      A      | A         | A         | A           | NA    | A         | NA        |
+| `crm_deals_stage_id[]`            |      A     |    A    |     A    |      A     |      A      | A         | A         | NA          | NA    | A         | A         |
+| `crm_deals_pipeline_id[]`         |     NA     |    A    |    NA    |      A     |      NA     | NA        | A         | NA          | NA    | A         | A         |
+| `crm_deals_status`                |     NA     |    A    |     A    |     NA     |      NA     | A         | A         | A           | NA    | A         | A         |
+| `crm_deals_account_id[]`          |      A     |    A    |     A    |      A     |      NA     | NA        | A         | NA          | A     | A         | NA        |
+| `crm_deals_contact_id[]`          |      A     |    A    |     A    |      A     |      A      | NA        | A         | NA          | A     | A         | A         |
+| `crm_deals_owner_id[]`            |      A     |    A    |     A    |      A     |      A      | A         | A         | A           | A     | A         | A         |
+| `crm_deals_created_by_id[]`       |      A     |    A    |     A    |      A     |      A      | A         | NA        | NA          | NA    | A         | NA        |
+| `crm_deals_amount_greater_than`   |      A     |    A    |     A    |     NA     |      A      | A         | NA        | NA          | NA    | A         | NA        |
+| `crm_deals_amount_less_than`      |      A     |    A    |     A    |     NA     |      A      | A         | NA        | NA          | NA    | A         | NA        |
+| `crm_leads_created_after`         |      A     |    NA   |     A    |     NA     |      A      | A         | NA        | A           | NA    | NA        | NA        |
+| `crm_leads_created_before`        |      A     |    NA   |     A    |     NA     |      A      | A         | NA        | A           | NA    | NA        | NA        |
+| `crm_leads_updated_after`         |      A     |    NA   |     A    |     NA     |      A      | A         | A         | A           | NA    | NA        | A         |
+| `crm_leads_updated_before`        |      A     |    NA   |     A    |     NA     |      A      | A         | NA        | A           | NA    | NA        | NA        |
+| `crm_leads_owner_id[]`            |      A     |    NA   |     A    |     NA     |      A      | A         | A         | A           | NA    | NA        | A         |
+| `crm_leads_created_by_id[]`       |      A     |    NA   |     A    |     NA     |      A      | A         | NA        | A           | NA    | NA        | NA        |
+| `crm_leads_email[]`               |      A     |    NA   |     A    |     NA     |      A      | A         | NA        | A           | NA    | NA        | NA        |
+| `crm_leads_converted_after`       |      A     |    NA   |    NA    |     NA     |      NA     | NA        | NA        | NA          | NA    | NA        | NA        |
+| `crm_leads_converted_before`      |      A     |    NA   |    NA    |     NA     |      NA     | NA        | NA        | NA          | NA    | NA        | NA        |
+| `crm_engagements_engagement_type` |      A     |    A    |    NA    |     NA     |      A      | A         | NA        | NA          | NA    | A         | A         |
+| `crm_engagements_created_after`   |      A     |    A    |     A    |     NA     |      A      | A         | NA        | NA          | NA    | A         | NA        |
+| `crm_engagements_created_before`  |      A     |    A    |     A    |     NA     |      A      | A         | NA        | NA          | NA    | A         | NA        |
+| `crm_engagements_updated_after`   |      A     |    A    |     A    |     NA     |      A      | A         | A         | NA          | NA    | A         | NA        |
+| `crm_engagements_updated_before`  |      A     |    A    |     A    |     NA     |      A      | A         | A         | NA          | NA    | A         | NA        |
+| `crm_engagements_account_id[]`    |      A     |    A    |     A    |     NA     |      A      | NA        | A         | NA          | A     | A         | NA        |
+| `crm_engagements_contact_id[]`    |      A     |    A    |     A    |     NA     |      A      | NA        | A         | NA          | A     | A         | A         |
+| `crm_engagements_deal_id[]`       |      A     |    A    |     A    |     NA     |      A      | NA        | A         | NA          | A     | NA        | NA        |
+| `crm_engagements_lead_id[]`       |      A     |    NA   |     A    |     NA     |      A      | NA        | A         | NA          | NA    | NA        | NA        |
+| `crm_engagements_direction`       |      A     |    A    |     A    |     NA     |      NA     | A         | NA        | NA          | NA    | A         | NA        |
+| `crm_engagements_status`          |      A     |    A    |    NA    |     NA     |      NA     | A         | NA        | NA          | A     | NA        | NA        |
+
+***

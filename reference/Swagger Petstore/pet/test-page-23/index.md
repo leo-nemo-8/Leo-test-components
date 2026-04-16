@@ -1,7 +1,7 @@
 ---
 title: Test page 23
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---

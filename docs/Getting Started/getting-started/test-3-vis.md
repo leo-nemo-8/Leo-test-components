@@ -1,7 +1,7 @@
 ---
 title: test 3 vis
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---

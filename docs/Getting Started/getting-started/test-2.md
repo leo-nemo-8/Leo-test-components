@@ -60,9 +60,9 @@ metadata:
 
 ## Remarks
 
-Filters are organized into logical categories that can be combined to narrow down your search results. Here are the common types of filters:
+Filters are organized into logical categories that you can combine to narrow your search results. Common filter types include:
 
-* **Date & Amount Filters** -  `created_after`, `updated_before`, `amount_less_than`, etc.
+* **Date and Amount Filters** -  `created_after`, `updated_before`, `amount_less_than`, etc.
 
 * **Owner** -  `owner_id[]`
 
@@ -89,26 +89,26 @@ Different CRMs handle combinations of these filter types differently.
 #### Salesforce
 
 * A maximum of **30 filter values** is allowed.
-* For Date and Amount filters, the filters are applied in an "AND" operation. That means the record must match **all** those conditions. For example, `(created_after = XYZ AND updated_before = ABC)`
-* If you use filters from different groups — like one for date and another for owner — Salesforce combines them using **OR**. So a record will be shown if it matches **any** of the filter groups. For example, `(created_after = XYZ AND updated_before = ABC) AND (owner_id in [...]) OR (contact_id in [...])`
+* Date and Amount filters are applied with an "AND" operation. This means the record must match **all** those conditions. For example, `(created_after = XYZ AND updated_before = ABC)`
+* If you use filters from different groups — such as one for date and another for owner — Salesforce combines them using **OR**. A record is shown if it matches **any** of the filter groups. For example, `(created_after = XYZ AND updated_before = ABC) AND (owner_id in [...]) OR (contact_id in [...])`
 * **Pass Through Filters** are not supported.
 
 #### Zoho CRM
 
 * Filtering by `crm_deals_stage_id` uses the **Deal Stage Name**.
-* For Date and Amount filters, the filters are applied in an "AND" operation. That means the record must match **all** those conditions. For example, `(created_after = XYZ AND updated_before = ABC)`
-* If you use filters from different groups — like one for date and another for owner — Zoho CRM combines them using **OR**. So a record will be shown if it matches **any** of the filter groups. For example, `(created_after = XYZ AND updated_before = ABC) OR (owner_id in [...])`
+* Date and Amount filters are applied with an "AND" operation. This means the record must match **all** those conditions. For example, `(created_after = XYZ AND updated_before = ABC)`
+* If you use filters from different groups — such as one for date and another for owner — Zoho CRM combines them using **OR**. A record is shown if it matches **any** of the filter groups. For example, `(created_after = XYZ AND updated_before = ABC) OR (owner_id in [...])`
 * **Pass Through Filters:**
-  * Pass Key value pairs, inside the passThroughRequest.query. Those will be passed to the following native endpoint.
+  * Pass key-value pairs inside `passThroughRequest.query`. These are passed to the following native endpoint.
   * API reference: <Anchor label="Zoho CRM Search API" target="_blank" href="https://www.zoho.com/crm/developer/docs/api/v8/search-records.html">Zoho CRM Search API</Anchor>
 
 #### HubSpot
 
 * The total number of matching records must be **under 10,000**. If your filters return more than that, you’ll get an error with status code 400.
 
-* A filter query can use **only up to 5 groups** in HubSpot. When more than five groups are combined, HubSpot throws an error.
+* A filter query can use **up to 5 groups** in HubSpot. When more than five groups are combined, HubSpot returns an error.
 
-* Different groups are combined using **OR**, meaning a record only needs to match one group. For example,  
+* Different groups are combined using **OR**, meaning a record needs to match only one group. For example,  
   `(created_after AND created_before AND amount filters) OR (owner_id in [...]) OR (contact_id in [...])`
 
 * Engagement filters `status` and `direction` are further constrained by the `engagement_type`:
@@ -123,28 +123,28 @@ Different CRMs handle combinations of these filter types differently.
 | TASK            | A        | NA          |
 
 * **Pass Through Filters:**
-  * Whatever value you give in `passThroughRequest.body`, that value will be assigned against "filterGroups" in the requestBody for the Native API.
+  * Whatever value you provide in `passThroughRequest.body` is assigned to `filterGroups` in the request body for the native API.
   * For more details, refer to HubSpot’s search filter docs:  
     <Anchor label="HubSpot CRM Search API Guide" target="_blank" href="https://developers.hubspot.com/docs/guides/api/crm/search">HubSpot CRM Search API Guide</Anchor>
 
 #### Freshworks
 
-* When multiple filter groups are combined, the filters are applied in an "AND" operation. This means a record will only show up if it matches **every single filter** you’ve used. For example, `(created_after = XYZ AND updated_before = ABC) AND (owner_id in [...]) AND (contact_id in [...])`
+* When multiple filter groups are combined, the filters are applied with an "AND" operation. This means a record is shown only if it matches **every filter** you use. For example, `(created_after = XYZ AND updated_before = ABC) AND (owner_id in [...]) AND (contact_id in [...])`
 * **Pass Through Filters:**
-  * Whatever value you give in `passThroughRequest.body`, that value will be assigned against "filter_rule" in the requestBody for the Native API.
-  * For more details, refer to Freshworks filtered_search api docs:  
+  * Whatever value you provide in `passThroughRequest.body` is assigned to `filter_rule` in the request body for the native API.
+  * For more details, refer to the Freshworks `filtered_search` API docs:  
     <Anchor label="Freshworks Search API Guide" target="_blank" href="https://developers.freshworks.com/crm/api/#search">Freshworks Search API Guide</Anchor>
 
 #### Zendesk CRM
 
-* When multiple filter groups are combined, the filters are applied in an "AND" operation. This means a record will only show up if it matches **every single filter** you’ve used. For example, `(created_after = XYZ AND updated_before = ABC) AND (owner_id in [...]) AND (contact_id in [...])`
+* When multiple filter groups are combined, the filters are applied with an "AND" operation. This means a record is shown only if it matches **every filter** you use. For example, `(created_after = XYZ AND updated_before = ABC) AND (owner_id in [...]) AND (contact_id in [...])`
 * **Pass Through Filters:**
-  * Whatever value you give in `passThroughRequest.body`, that value will be assigned against "query" in the requestBody for the Native API.
-  * For more details, refer to Zendesk search api docs:  
+  * Whatever value you provide in `passThroughRequest.body` is assigned to `query` in the request body for the native API.
+  * For more details, refer to the Zendesk search API docs:  
     <Anchor label="Zendesk CRM Search Query Language" target="_blank" href="https://developer.zendesk.com/api-reference/sales-crm/search/query-language/">Zendesk CRM Search Query Language</Anchor>
 
 #### Sugar CRM
 
-* For Date and Amount filters, the filters are applied in an "AND" operation. That means the record must match **all** those conditions. For example, `(created_after = XYZ AND updated_before = ABC)`
-* If you use filters from different groups — like one for date and another for owner — Salesforce combines them using **OR**. So a record will be shown if it matches **any** of the filter groups. For example, `(created_after = XYZ AND updated_before = ABC) AND (owner_id in [...]) OR (contact_id in [...])`
-* For `crm_engagements_direction` , do not give this value, if your type includes NOTE or TASKS.
+* Date and Amount filters are applied with an "AND" operation. This means the record must match **all** those conditions. For example, `(created_after = XYZ AND updated_before = ABC)`
+* If you use filters from different groups — such as one for date and another for owner — Sugar CRM combines them using **OR**. A record is shown if it matches **any** of the filter groups. For example, `(created_after = XYZ AND updated_before = ABC) AND (owner_id in [...]) OR (contact_id in [...])`
+* For `crm_engagements_direction`, do not provide this value if your type includes NOTE or TASKS.

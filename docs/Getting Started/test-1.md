@@ -12,6 +12,9 @@ hidden: true
 metadata:
   robots: index
 ---
+
+To delete, click the <i class="fa-solid fa-trash" /> icon and then press save
+
 You can send a simple, plain-text message to one or more recipients using the Text template. It is ideal for sending basic notifications, alerts, or transactional messages without any formatting or media.
 
 You can send interactive suggestions, such as replies and actions. You can add chips such as:
@@ -40,7 +43,14 @@ To create an RCS text template, perform the following steps:
 
 4. In the **Template Details** section, perform the following:
    1. In the **Enter Template Name** field, enter the template name. Only alphanumeric characters are supported, up to a maximum of 20 characters.
-   2. In the **Select Type** drop-down field, click the drop-down button, and then select the **Text** option.
+
+test text /e
+
+<Callout icon="❗️">
+
+</Callout>
+
+4. In the **Select Type** drop-down field, click the drop-down button, and then select the **Text** option.
 
 <Image align="center" border={true} src="https://files.readme.io/1bc709e7b6ac4ecc78821cabe5d97eb8542c904ad742ad1eabbf1b259f6977bc-add_template_4.png" className="border" />
 
@@ -173,14 +183,15 @@ To create an RCS text template, perform the following steps:
 <Image align="center" border={true} src="https://files.readme.io/bef778874ee9194552e024f1579de216a87d40a4196af4d78f14e4f4d96fc1df-add_template_20.png" className="border" />
 
 10. Click **Save**.  
-   The **Activate template** pop-up appears.
+    The **Activate template** pop-up appears.
 
 <Image align="center" border={true} src="https://files.readme.io/0f3381f78830710d28faf6b5185c757a0923ed011d9eec767639dee43b3d65e1-add_template_21.png" className="border" />
 
 11. Select one of the following options:
-   * **Activate Now** - Activate the template immediately. After successful template approval, the **Status** of the template will be **Approved**.
 
-     <Image align="center" border={true} src="https://files.readme.io/3cd6c2b839363203c829f5814cf8e4954e47bfd680e969e9d027d4a03487c6e7-add_template_22.png" className="border" />
-   * **Activate Later** - Create the template. After selecting the **Activate Later** option, the status of the template will be **Created**. You can send the template for approval later. For more information, see [Send Template for Approval](https://developers.kaleyra.io/docs/rcs-send-template-for-approval).
+* **Activate Now** - Activate the template immediately. After successful template approval, the **Status** of the template will be **Approved**.
 
-     <Image align="center" border={true} src="https://files.readme.io/5a0ca87fe37a7d44082e81c0ab9cf3d0bcb792993083faa270708251511c77bd-add_template_23.png" className="border" />
+  <Image align="center" border={true} src="https://files.readme.io/3cd6c2b839363203c829f5814cf8e4954e47bfd680e969e9d027d4a03487c6e7-add_template_22.png" className="border" />
+* **Activate Later** - Create the template. After selecting the **Activate Later** option, the status of the template will be **Created**. You can send the template for approval later. For more information, see [Send Template for Approval](https://developers.kaleyra.io/docs/rcs-send-template-for-approval).
+
+  <Image align="center" border={true} src="https://files.readme.io/5a0ca87fe37a7d44082e81c0ab9cf3d0bcb792993083faa270708251511c77bd-add_template_23.png" className="border" />

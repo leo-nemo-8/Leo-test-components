@@ -7,8 +7,6 @@ metadata:
 ---
 to delete
 
-
-
-<TestCusCom />
+<ExampleComponent header="Getting Started with Custom Components" />
 
 <br />

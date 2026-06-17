@@ -9,6 +9,4 @@ to delete
 
 <ExampleComponent header="Getting Started with Custom Components" />
 
-<NotRespontive />
-
 <br />

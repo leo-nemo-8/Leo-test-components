@@ -38,7 +38,6 @@ export const Card = ({ children, href, icon, target, title }) => {
 };
 
 export const Cards = ({ columns = 2, children }) => {
-  // Використовуємо responsive-класи замість динамічного рядка
   const gridClasses = {
     1: 'grid-cols-1',
     2: 'grid-cols-1 md:grid-cols-2',
@@ -52,3 +51,9 @@ export const Cards = ({ columns = 2, children }) => {
     </div>
   );
 };
+
+<Cards columns={2}>
+  <Card title="Card Title">
+    Card content goes here.
+  </Card>
+</Cards>

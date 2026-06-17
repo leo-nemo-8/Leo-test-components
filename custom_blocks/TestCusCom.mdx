@@ -1,26 +1,59 @@
 ---
 name: TestCusCom
 ---
-export const ExampleComponent = ({ header }) => {
+import React from 'react';
+
+export const Card = ({ children, href, icon, target, title }) => {
+  const Tag = href ? 'a' : 'div';
+  const rel = target === '_blank' ? 'noopener noreferrer' : undefined;
+
   return (
-    <div className="flex justify-center">
-      <div className="rounded-md p-6 m-4 max-w-lg shadow-md border border-gray-300 dark:bg-gray-800 dark:border-gray-600">
-        <p className="text-lg font-bold">{header}</p>
-        <p>
-          <i className="fa-solid fa-code mr-2" />
-          Write <a className="text-blue-500! dark:text-blue-300!" href="https://docs.readme.com/main/v3.0/docs/building-custom-mdx-components" target="_blank">MDX</a> to render interactive content
+    <Tag
+      className={`
+        rounded-md border border-gray-200 bg-white shadow-sm p-5 pb-0 dark:bg-inherit dark:border-white/10
+        ${href ? 'no-underline! text-inherit! hover:bg-gray-100 dark:hover:bg-white/10' : ''}
+      `}
+      href={href}
+      target={target}
+      rel={rel}
+    >
+      {icon && (
+        <img
+          src={icon}
+          alt=""
+          className="mb-3"
+          style={{ width: '32px', height: '32px' }}
+        />
+      )}
+      {title && (
+        <p className="font-semibold mb-2" style={{ color: '#5745C6' }}>
+          {title}
         </p>
-        <p>
-          <i className="fa-solid fa-pen mr-3" />
-          Style elements with <a className="text-blue-500! dark:text-blue-300!" href="https://tailwindcss.com" target="_blank">Tailwind CSS</a>
-        </p>
-        <p>
-          <i className="fa-solid fa-lightbulb mr-4" />
-          Need inspiration? Check out our <a className="text-blue-500! dark:text-blue-300!" href="https://github.com/readmeio/marketplace" target="_blank">Marketplace</a>!
-        </p>
+      )}
+      <div className="text-sm leading-6 font-normal text-gray-600 dark:text-gray-300">
+        {children}
       </div>
+    </Tag>
+  );
+};
+
+export const Cards = ({ columns = 2, children }) => {
+  const gridClasses = {
+    1: 'grid-cols-1',
+    2: 'grid-cols-1 md:grid-cols-2',
+    3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+    4: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4',
+  };
+
+  return (
+    <div className={`grid gap-5 ${gridClasses[columns] || 'grid-cols-1 md:grid-cols-2'}`}>
+      {children}
     </div>
   );
 };
 
-<ExampleComponent header="Getting Started with Custom Components" />
+<Cards columns={2}>
+  <Card title="Card Title">
+    Card content goes here.
+  </Card>
+</Cards>

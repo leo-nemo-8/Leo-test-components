@@ -34,4 +34,11 @@ ff
   />
 </div>
 
+<Grid columns={2} gap="20px">
+  <div>item one</div>
+  <div>item two</div>
+  <div>item three</div>
+  <div>item four</div>
+</Grid>
+
 <br />

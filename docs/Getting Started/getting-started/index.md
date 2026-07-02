@@ -2,9 +2,11 @@
 title: Welcome to LeoTest
 hidden: false
 ---
-> 📘
->
-> **Template:**  Delete this callout and edit this page with your content and links.
+<Callout icon="📘" theme="info">
+  ### test
+
+  **Template:**  Delete this callout and edit this page with your content and links.
+</Callout>
 
 <Cards>
   {/* Edit the props below to customize these components */}
@@ -15,9 +17,11 @@ hidden: false
   <Card title="Build with AI" href="#" icon="fa-duotone fa-sparkles">Use LLM features to automate your workflow</Card>
 </Cards>
 
-> 📘
->
-> fjdjfjdfdjslfjsdlkjflksdf
+<Callout icon="📘" theme="info">
+  ###
+
+  fjdjfjdfdjslfjsdlkjflksdf
+</Callout>
 
 ## Recent Releases
 

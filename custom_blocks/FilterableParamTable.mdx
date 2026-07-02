@@ -1,0 +1,367 @@
+---
+name: FilterableParamTable
+---
+import { useState } from "react";
+
+export const FilterableParamTable = ({ columns, filters = [], rows, searchKeys, description }) => {
+  const defaultFilters = filters.reduce((acc, f) => ({ ...acc, [f.key]: "All" }), {});
+  const [activeFilters, setActiveFilters] = useState(defaultFilters);
+  const [search, setSearch] = useState("");
+
+  const searchFields = searchKeys || [columns[0]?.key];
+
+  const filtered = rows.filter((row) => {
+    const matchesFilters = filters.every((f) => {
+      if (activeFilters[f.key] === "All") return true;
+      const cellValue = row[f.key] || "";
+      return cellValue === "All" || cellValue.includes(activeFilters[f.key]);
+    });
+    const matchesSearch =
+      search === "" ||
+      searchFields.some((key) =>
+        String(row[key] || "").toLowerCase().includes(search.toLowerCase())
+      );
+    return matchesFilters && matchesSearch;
+  });
+
+  return (
+    <>
+      <style>{`
+        .fpt-wrapper {
+          font-family: DM Sans, sans-serif;
+          max-width: 100%;
+        }
+
+        .fpt-controls {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          margin-bottom: 16px;
+        }
+
+        .fpt-search-wrap {
+          position: relative;
+          max-width: 320px;
+        }
+
+        .fpt-search-input {
+          width: 100%;
+          padding: 8px 12px 8px 34px;
+          border: 1px solid #dddddd;
+          border-radius: 8px;
+          font-size: 13px;
+          color: #2d3748;
+          background: #fff;
+          outline: none;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+          box-sizing: border-box;
+        }
+        html[data-color-mode="dark"] .fpt-search-input {
+          background: #1e293b;
+          border-color: rgba(51, 65, 85, 0.5);
+          color: #e2e8f0;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        .fpt-search-input::placeholder {
+          color: #a0aec0;
+        }
+        html[data-color-mode="dark"] .fpt-search-input::placeholder {
+          color: #64748b;
+        }
+
+        .fpt-search-icon {
+          position: absolute;
+          left: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          pointer-events: none;
+          color: #a0aec0;
+        }
+        html[data-color-mode="dark"] .fpt-search-icon {
+          color: #64748b;
+        }
+
+        .fpt-filter-group {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          flex-wrap: wrap;
+        }
+
+        .fpt-filter-label {
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: #a0aec0;
+          margin-right: 2px;
+          white-space: nowrap;
+        }
+        html[data-color-mode="dark"] .fpt-filter-label {
+          color: #64748b;
+        }
+
+        .fpt-tab {
+          padding: 4px 12px;
+          border-radius: 20px;
+          font-size: 12px;
+          font-weight: 600;
+          cursor: pointer;
+          border: 1px solid #e2e8f0;
+          background: #fff;
+          color: #718096;
+          transition: all 0.15s ease;
+          letter-spacing: 0.02em;
+        }
+        .fpt-tab:hover {
+          border-color: #cbd5e1;
+          background: #f8fafc;
+        }
+        .fpt-tab.is-active {
+          border-color: #1966da;
+          background: #1966da;
+          color: #fff;
+        }
+        html[data-color-mode="dark"] .fpt-tab {
+          background: #1e293b;
+          border-color: rgba(51, 65, 85, 0.5);
+          color: #94a3b8;
+        }
+        html[data-color-mode="dark"] .fpt-tab:hover {
+          background: #334155;
+          border-color: rgba(71, 85, 105, 0.6);
+        }
+        html[data-color-mode="dark"] .fpt-tab.is-active {
+          background: #6b9ff5;
+          border-color: #6b9ff5;
+          color: #ffffff;
+        }
+
+        .fpt-meta {
+          font-size: 12px;
+          color: #a0aec0;
+          margin-bottom: 10px;
+        }
+        html[data-color-mode="dark"] .fpt-meta {
+          color: #64748b;
+        }
+
+        .fpt-description {
+          font-size: 13px;
+          color: #718096;
+          margin-bottom: 12px;
+          line-height: 1.6;
+        }
+        html[data-color-mode="dark"] .fpt-description {
+          color: #94a3b8;
+        }
+
+        .fpt-table {
+          width: 100%;
+          border-collapse: collapse;
+          border-spacing: 0;
+        }
+
+        .fpt-th {
+          padding: 10px 16px;
+          text-align: left;
+          font-size: 11px;
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          background: #f6f6f6;
+          color: #656565;
+          white-space: nowrap;
+        }
+
+        .fpt-th-last {
+          padding: 10px 16px;
+          text-align: left;
+          font-size: 11px;
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          background: #f6f6f6;
+          color: #656565;
+          white-space: nowrap;
+          border-right: 1px solid #e2e8f0;
+        }
+        html[data-color-mode="dark"] .fpt-th-last {
+          border-right-color: rgba(51, 65, 85, 0.5);
+        }
+
+        .fpt-td {
+          padding: 10px 16px;
+          border-top: 1px solid #edf2f7;
+          font-size: 13px;
+          color: #4a5568;
+          vertical-align: middle;
+        }
+        html[data-color-mode="dark"] .fpt-td {
+          border-top-color: rgba(51, 65, 85, 0.5);
+          color: #94a3b8;
+        }
+
+        .fpt-td-last {
+          padding: 10px 16px;
+          border-top: 1px solid #edf2f7;
+          border-right: 1px solid #e2e8f0;
+          font-size: 13px;
+          color: #4a5568;
+          vertical-align: middle;
+        }
+        html[data-color-mode="dark"] .fpt-td-last {
+          border-top-color: rgba(51, 65, 85, 0.5);
+          border-right-color: rgba(51, 65, 85, 0.5);
+          color: #94a3b8;
+        }
+
+        .fpt-row-even {
+          background: #fff;
+        }
+        html[data-color-mode="dark"] .fpt-row-even {
+          background: #0f172a;
+        }
+
+        .fpt-row-odd {
+          background: #f9fafb;
+        }
+        html[data-color-mode="dark"] .fpt-row-odd {
+          background: #1e293b;
+        }
+
+        .fpt-empty {
+          text-align: center;
+          padding: 32px;
+          color: #a0aec0;
+          font-size: 13px;
+        }
+        html[data-color-mode="dark"] .fpt-empty {
+          color: #64748b;
+        }
+
+        .fpt-code {
+          font-family: DM Mono, monospace;
+          font-size: 12px;
+          background: #f2f0f9;
+          color: #3d2c7d;
+          padding: 3px 8px;
+          border-radius: 4px;
+          border: 1px solid #dddddd;
+        }
+        html[data-color-mode="dark"] .fpt-code {
+          background: rgba(61, 44, 125, 0.2);
+          color: #a0bff5;
+          border-color: rgba(160, 191, 245, 0.3);
+        }
+      `}</style>
+
+      <div className="fpt-wrapper">
+        <div className="fpt-controls">
+          <div className="fpt-search-wrap">
+            <span className="fpt-search-icon">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <circle cx="6" cy="6" r="4.5" stroke="currentColor" strokeWidth="1.4" />
+                <path d="M9.5 9.5L12 12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+              </svg>
+            </span>
+            <input
+              className="fpt-search-input"
+              placeholder={`Search ${columns[0]?.label?.toLowerCase() || "values"}...`}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+          {filters.map((f) => (
+            <div key={f.key} className="fpt-filter-group">
+              <span className="fpt-filter-label">{f.label}:</span>
+              {["All", ...f.options].map((opt) => (
+                <button
+                  key={opt}
+                  className={`fpt-tab ${activeFilters[f.key] === opt ? 'is-active' : ''}`}
+                  onClick={() =>
+                    setActiveFilters((prev) => ({ ...prev, [f.key]: opt }))
+                  }
+                >
+                  {opt}
+                </button>
+              ))}
+            </div>
+          ))}
+        </div>
+
+        <div className="fpt-meta">
+          Showing {filtered.length} of {rows.length} values
+          {filters.some((f) => activeFilters[f.key] !== "All")
+            ? ` · ${filters
+                .filter((f) => activeFilters[f.key] !== "All")
+                .map((f) => `${f.label}: ${activeFilters[f.key]}`)
+                .join(", ")}`
+            : ""}
+          {search ? ` · matching "${search}"` : ""}
+        </div>
+
+        {description && (
+          <p className="fpt-description">{description}</p>
+        )}
+
+        <table className="fpt-table">
+          <thead>
+            <tr>
+              {columns.map((col, i) => (
+                <th key={col.key} className={i === columns.length - 1 ? 'fpt-th-last' : 'fpt-th'}>
+                  {col.label}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {filtered.length === 0 ? (
+              <tr>
+                <td colSpan={columns.length} className="fpt-empty">
+                  No results match your filter.
+                </td>
+              </tr>
+            ) : (
+              filtered.map((row, i) => (
+                <tr key={i} className={i % 2 === 0 ? 'fpt-row-even' : 'fpt-row-odd'}>
+                  {columns.map((col, j) => (
+                    <td key={col.key} className={j === columns.length - 1 ? 'fpt-td-last' : 'fpt-td'}>
+                      {col.render
+                        ? col.render(row[col.key], row)
+                        : col.isCode
+                        ? <code className="fpt-code">{row[col.key]}</code>
+                        : row[col.key]}
+                    </td>
+                  ))}
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
+};
+
+<FilterableParamTable
+  description="All values are supported across verticals. The list below reflects the most common usage per vertical."
+	columns={[
+    { key: "Parameters", label: "Parameters", isCode: true },
+    { key: "whenToUse", label: "When to Use" },
+    { key: "verticals", label: "Business Vertical" },
+    { key: "test", label: "test"},
+  ]}
+  filters={[
+    {
+      key: "verticals",
+      label: "Vertical",
+      options: ["Retail", "Finance", "Travel", "Network Services"],
+    },
+  ]}
+  searchKeys={["parameters", "whenToUse"]}
+  rows={[
+    { Parameters: "homepage", whenToUse: "Homepage and main landing pages", verticals: "All" },
+    { Parameters: "confirmation", whenToUse: "Order and booking confirmation page", verticals: "All" },
+  ]}
+/>

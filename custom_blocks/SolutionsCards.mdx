@@ -1,0 +1,106 @@
+---
+name: SolutionsCards
+---
+import React from 'react';
+
+export const SolutionsCards = () => {
+  const cards = [
+    {
+      title: 'Identity Verification Solutions',
+      href: '/docs/idv-solutions',
+      icon: 'https://files.readme.io/1b1839e-electronic_id.svg',
+      iconAlt: 'Identity Verification Solutions',
+      description:
+        "Verify the client's identity based on their ID document, biometrics, geolocation, and AML status."
+    },
+    {
+      title: 'AML Solutions',
+      href: '/docs/aml-solutions',
+      icon: 'https://files.readme.io/b2facf5-AML.svg',
+      iconAlt: 'AML',
+      description:
+        'Combine AML products to ensure that clients are not sanctioned, PEPs, known fraudsters, or likely to cause reputational damage.'
+    },
+    {
+      title: 'Authentication Solutions',
+      href: '/docs/authentication-solutions',
+      icon: 'https://files.readme.io/a590fc7-Authentication.svg',
+      iconAlt: 'Authentication',
+      description:
+        'Authenticate existing clients using their biometrics, geolocation, and device metadata, or authenticate their new ID document.'
+    },
+    {
+      title: 'Review & Audit Solutions',
+      href: '/docs/review-audit',
+      icon: 'https://files.readme.io/8acffd1-Review_and_Audit.svg',
+      iconAlt: 'Review and Audit Solutions',
+      description:
+        "Use Fourthline's Case Review Portal to review and audit cases in a secure, user-friendly web environment, supported by expert guidance."
+    }
+  ];
+
+  const gridStyle = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+    gap: '16px',
+    marginTop: '24px'
+  };
+
+  const cardStyle = {
+    display: 'block',
+    padding: '20px',
+    border: '1px solid #e5e7eb',
+    borderRadius: '12px',
+    textDecoration: 'none',
+    color: 'inherit',
+    backgroundColor: '#ffffff',
+    boxShadow: '0 4px 10px rgba(0, 0, 0, 0.06)',
+    transition: 'box-shadow 0.2s ease, transform 0.2s ease'
+  };
+
+  const iconStyle = {
+    width: '48px',
+    height: '48px',
+    marginBottom: '16px'
+  };
+
+  const titleStyle = {
+    fontSize: '16px',
+    fontWeight: 700,
+    marginBottom: '8px'
+  };
+
+  const descriptionStyle = {
+    fontSize: '14px',
+    lineHeight: 1.5,
+    color: '#4b5563'
+  };
+
+  return (
+    <div style={gridStyle}>
+      {cards.map(card => (
+        <a
+          key={card.href}
+          href={card.href}
+          style={cardStyle}
+          onMouseEnter={event => {
+            event.currentTarget.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.12)';
+            event.currentTarget.style.transform = 'translateY(-2px)';
+          }}
+          onMouseLeave={event => {
+            event.currentTarget.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.06)';
+            event.currentTarget.style.transform = 'translateY(0)';
+          }}
+        >
+          <img src={card.icon} alt={card.iconAlt} style={iconStyle} />
+
+          <div style={titleStyle}>{card.title}</div>
+
+          <div style={descriptionStyle}>{card.description}</div>
+        </a>
+      ))}
+    </div>
+  );
+};
+
+<SolutionsCards />

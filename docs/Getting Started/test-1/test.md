@@ -9,6 +9,6 @@ Learn how to combine Fourthline [products](https://docs.fourthline.com/docs/prod
 
 ## Solutions
 
-<TestReact />
+<SolutionsCards />
 
 <br />

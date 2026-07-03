@@ -1,5 +1,5 @@
 ---
-title: test
+title: solutions
 deprecated: false
 hidden: false
 metadata:

@@ -1,0 +1,190 @@
+---
+name: TestReact
+---
+
+import React, { useEffect } from 'react';
+
+export const Banner = ({
+  isInline = false,
+  message,
+  color,
+  textColor,
+  fontSize,
+  fontWeight
+}) => {
+  // Handle header-based banner creation
+  useEffect(() => {
+    let container;
+
+    if (!isInline) {
+      const header = document.querySelector('#content-head');
+      if (header) {
+        container = document.getElementById('banner-container');
+        if (!container) {
+          container = document.createElement('div');
+          container.id = 'banner-container';
+
+					// Set banner container styles
+          container.style.backgroundColor = color;
+					container.style.color = textColor;
+ 					container.style.fontSize = fontSize;
+          container.style.fontWeight = fontWeight;
+					container.style.padding = '8px';
+        	container.style.textAlign = 'center';
+          container.style.borderRadius = '6px';
+					container.style.marginBottom = '20px';
+
+          container.textContent = message;
+
+          // Append banner container to the top of the page
+					header.prepend(container);
+        }
+      }
+		}
+
+    // Remove banner on page change
+    return () => {
+      if (container && container.parentNode) {
+        container.parentNode.removeChild(container);
+      }
+    };
+  }, [isInline]);
+
+  // Render inline banner
+ 	return (
+    isInline && (
+    <div
+      className={`p-2 rounded-md text-center bg-[${color}] text-[${textColor}] text-[${fontSize}] font-${fontWeight}`}
+		>
+			{message}
+		</div>
+		)
+	)
+};
+
+<Banner
+  isInline={true}
+  message={
+    <>
+Curious to test how this works? Sign up for free to {" "}
+      <a
+        href="https://docs.fourthline.com/docs/hub"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ color: "#FFFFFF", textDecoration: "underline" }}
+      >
+        Hub
+      </a>
+      , Fourthline's self-service portal, and try it out!
+    </>
+  }
+  color="#093E3C"
+  textColor="#FFFFFF"
+  fontSize="14px"
+  fontWeight="bold"
+/>
+
+<div id="custom-page">
+  <div className="section">
+    <div className="page-description">
+      This page explains how our products work. To learn how to combine them into locally compliant solutions for specific markets, see 
+      <a href="https://docs.fourthline.com/docs/solutions">Solutions</a>.
+    </div>
+  </div>
+
+  <div className="section">
+    <div className="section-title" id="Products">Products</div>
+
+    <div className="cards cards--small">
+      <a href="/docs/documents" className="card card--link">
+        <img src="https://files.readme.io/9db63cd-Secondary-identity.svg" width="48" height="48" alt="Documents" />
+
+        <div className="card--title">Documents</div>
+
+        <div className="card--description">
+          Our Documents products ensure that you are onboarding clients with valid, authentic, and uncompromised ID documents.
+        </div>
+      </a>
+
+      <a href="/docs/eid-overview" className="card card--link">
+        <img alt="eID Verification" src="https://files.readme.io/58a42acf1f813e0e165502652c3e5ebaba70eb256f53467721fbcf88941d01cf-eID.svg" width="48" height="48" />
+
+        <div className="card--title">eID Verification</div>
+
+        <div className="card--description">
+          Boost security and conversion with eID Verification – Fourthline’s product for fast, automated identity checks in Germany.
+        </div>
+      </a>
+
+      <a href="/docs/biometrics" className="card card--link">
+        <img alt="Biometrics" src="https://files.readme.io/300843e-biometric_analyses.svg" width="48" height="48" />
+
+        <div className="card--title">Biometrics</div>
+
+        <div className="card--description">
+          Our Biometrics products analyze a client’s physical traits to confirm they are the person they claim to be.
+        </div>
+      </a>
+
+      <a href="/docs/location" className="card card--link">
+        <img alt="Location" src="https://files.readme.io/771b700-whereabouts_checks.svg" width="48" height="48" />
+
+        <div className="card--title">Location</div>
+
+        <div className="card--description">
+          Our Location products help fight fraud by proving a client's actual physical location and home address.
+        </div>
+      </a>
+
+      <a href="/docs/qes-overview" className="card card--link">
+        <img alt="Qualified Electronic Signature" src="https://files.readme.io/058a01e-qes.svg" width="48" height="48" />
+
+        <div className="card--title">Qualified Electronic Signature</div>
+
+        <div className="card--description">
+          Let clients sign formal or legal documents with a secure, digital signature at a high level of assurance.
+        </div>
+      </a>
+
+      <a href="/docs/bav-overview" className="card card--link">
+        <img alt="Bank Account Verification" src="https://files.readme.io/f1a087a-bank.svg" width="48" height="48" />
+
+        <div className="card--title">Bank Account Verification</div>
+
+        <div className="card--description">
+          Ensure clients are authorized to make payments from an account with another financial institution.
+        </div>
+      </a>
+
+      <a href="/docs/aml-overview" className="card card--link">
+        <img alt="AML" src="https://files.readme.io/b2facf5-AML.svg" width="48" height="48" />
+
+        <div className="card--title">AML</div>
+
+        <div className="card--description">
+          Check once or daily that clients are not sanctioned, politically exposed, or reputationally damaging.
+        </div>
+      </a>
+
+      <a href="/docs/authentication-overview" className="card card--link">
+        <img alt="Authentication" src="https://files.readme.io/a590fc7-Authentication.svg" width="48" height="48" />
+
+        <div className="card--title">Authentication</div>
+
+        <div className="card--description">
+          Establish the identity of existing clients to access your services and keep their profile current.
+        </div>
+      </a>
+
+      <a href="/docs/data-verification" className="card card--link">
+        <img alt="Data Verification" src="https://files.readme.io/4057a24-Tile_Dashboard.svg" width="48" height="48" />
+
+        <div className="card--title">Data Verification</div>
+
+        <div className="card--description">
+          Confirm the client's identity by cross-referencing personal information against multiple global and local databases.
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

@@ -10,7 +10,7 @@ metadata:
 Use this section to help diagnose and resolve issues when sending payments through the API.
 
 You can:
-
+- Test if Git works
 - Track payment progress
 - Avoid failed or duplicate payment submissions
 - Understand common errors

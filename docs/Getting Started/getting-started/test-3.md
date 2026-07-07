@@ -21,7 +21,7 @@ Before you begin, make sure you have:
 2. **At least one offer created** in the Cleeng dashboard: <Anchor target="_blank" href="https://publisher.support.cleeng.com/hc/en-us/articles/360012552919-What-is-a-Cleeng-offer">Learn more about Cleeng offers</Anchor>.
 3. **Payment methods enabled for your account**: no setup required for the default configuration.
 
-   - **Enabled by default**: Card, Google Pay, Apple Pay (Apple Pay requires domain verification before it can be used in production. See <Anchor target="_blank" href="https://developers.cleeng.com/docs/checkout-hosted-widget#4-apple-pay-production-environment-setup">4\. Apple Pay production environment setup</Anchor>)
+   - **Enabled by default**: Card, Google Pay, Apple Pay (Apple Pay requires domain verification before it can be used in production. See [4. Apple Pay production environment setup](https://developers.cleeng.com/docs/checkout-hosted-widget#4-apple-pay-production-environment-setup))
    - **To add PayPal, iDEAL, and GCash**: <Anchor target="_blank" href="https://publisher.support.cleeng.com/hc/en-us/requests/new">Contact Support</Anchor> to activate these payment methods.
 
 <br />

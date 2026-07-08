@@ -6,8 +6,6 @@ metadata:
   robots: index
 ---
 <Callout icon="📘" theme="info">
- 
-
   test callout
 </Callout>
 

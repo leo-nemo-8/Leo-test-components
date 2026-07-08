@@ -17,27 +17,77 @@ metadata:
 
 This page sets out how to customize the Web SDK <Glossary>UI</Glossary> to match the look and feel of your brand.
 
-<Cards kind="tile">
-  <Card title="Setup" href="/docs/web-ui" />
-  <Card title="Fonts" href="/docs/web-ui-fonts" />
-  <Card title="Colors" href="/docs/web-ui-colors" />
-  <Card title="Layout" href="/docs/web-ui-layout" />
-</Cards>
+<div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: "12px", marginTop: "20px", marginBottom: "28px" }}>
+  <a
+    href="/docs/web-ui"
+    style={{
+      display: "block",
+      padding: "14px 16px",
+      borderRadius: "10px",
+      backgroundColor: "#FFD84D",
+      color: "#1F2937",
+      textDecoration: "none",
+      textAlign: "center",
+      fontWeight: 700,
+      border: "1px solid #E0B800"
+    }}
+  >
+    Setup
+  </a>
 
+  <a
+    href="/docs/web-ui-fonts"
+    style={{
+      display: "block",
+      padding: "14px 16px",
+      borderRadius: "10px",
+      backgroundColor: "#FFD84D",
+      color: "#1F2937",
+      textDecoration: "none",
+      textAlign: "center",
+      fontWeight: 700,
+      border: "1px solid #E0B800"
+    }}
+  >
+    Fonts
+  </a>
 
+  <a
+    href="/docs/web-ui-colors"
+    style={{
+      display: "block",
+      padding: "14px 16px",
+      borderRadius: "10px",
+      backgroundColor: "#FFD84D",
+      color: "#1F2937",
+      textDecoration: "none",
+      textAlign: "center",
+      fontWeight: 700,
+      border: "1px solid #E0B800"
+    }}
+  >
+    Colors
+  </a>
 
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-<div class="call-out call-out__support">
-<div class="call-out--icon">
-<img src="https://files.readme.io/372d218-Inline_Support.svg" alt="Support" />
+  <a
+    href="/docs/web-ui-layout"
+    style={{
+      display: "block",
+      padding: "14px 16px",
+      borderRadius: "10px",
+      backgroundColor: "#FFD84D",
+      color: "#1F2937",
+      textDecoration: "none",
+      textAlign: "center",
+      fontWeight: 700,
+      border: "1px solid #E0B800"
+    }}
+  >
+    Layout
+  </a>
 </div>
 
-<div>
-<div class="call-out--title">Support</div>
-<div class="call-out--text">For support or any questions, contact your Fourthline delivery manager.</div>
-</div>
-</div>
+<Card color="#ff1934" href="#" icon="fa-rocket" title="Getting Started">
 
 ## Setup
 

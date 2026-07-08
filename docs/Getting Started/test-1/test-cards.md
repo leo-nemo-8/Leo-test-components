@@ -24,7 +24,20 @@ This page sets out how to customize the Web SDK <Glossary>UI</Glossary> to match
   <Card title="Layout" href="/docs/web-ui-layout" />
 </Cards>
 
-<Card color="#ff1934" href="#" icon="fa-rocket" title="Getting Started">
+
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+<div class="call-out call-out__support">
+<div class="call-out--icon">
+<img src="https://files.readme.io/372d218-Inline_Support.svg" alt="Support" />
+</div>
+
+<div>
+<div class="call-out--title">Support</div>
+<div class="call-out--text">For support or any questions, contact your Fourthline delivery manager.</div>
+</div>
+</div>
 
 ## Setup
 

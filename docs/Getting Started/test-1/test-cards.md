@@ -17,75 +17,14 @@ metadata:
 
 This page sets out how to customize the Web SDK <Glossary>UI</Glossary> to match the look and feel of your brand.
 
-<div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: "12px", marginTop: "20px", marginBottom: "28px" }}>
-  <a
-    href="/docs/web-ui"
-    style={{
-      display: "block",
-      padding: "14px 16px",
-      borderRadius: "10px",
-      backgroundColor: "#093E3C",
-      color: "#FFFFFF",
-      textDecoration: "none",
-      textAlign: "center",
-      fontWeight: 700,
-      border: "1px solid #093E3C"
-    }}
-  >
-    Setup
-  </a>
+<Cards kind="tile">
+  <Card title="Setup" href="/docs/web-ui" />
+  <Card title="Fonts" href="/docs/web-ui-fonts" />
+  <Card title="Colors" href="/docs/web-ui-colors" />
+  <Card title="Layout" href="/docs/web-ui-layout" />
+</Cards>
 
-  <a
-    href="/docs/web-ui-fonts"
-    style={{
-      display: "block",
-      padding: "14px 16px",
-      borderRadius: "10px",
-      backgroundColor: "#E8F3F1",
-      color: "#093E3C",
-      textDecoration: "none",
-      textAlign: "center",
-      fontWeight: 700,
-      border: "1px solid #BFDCD8"
-    }}
-  >
-    Fonts
-  </a>
-
-  <a
-    href="/docs/web-ui-colors"
-    style={{
-      display: "block",
-      padding: "14px 16px",
-      borderRadius: "10px",
-      backgroundColor: "#E8F3F1",
-      color: "#093E3C",
-      textDecoration: "none",
-      textAlign: "center",
-      fontWeight: 700,
-      border: "1px solid #BFDCD8"
-    }}
-  >
-    Colors
-  </a>
-
-  <a
-    href="/docs/web-ui-layout"
-    style={{
-      display: "block",
-      padding: "14px 16px",
-      borderRadius: "10px",
-      backgroundColor: "#E8F3F1",
-      color: "#093E3C",
-      textDecoration: "none",
-      textAlign: "center",
-      fontWeight: 700,
-      border: "1px solid #BFDCD8"
-    }}
-  >
-    Layout
-  </a>
-</div>
+<Card color="#ff0000" href="#" icon="fa-rocket" title="Getting Started">
 
 ## Setup
 

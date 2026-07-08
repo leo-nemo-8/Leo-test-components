@@ -318,133 +318,21 @@ _Milestones_ refer to significant stages within the shipment process that are es
 If you choose to receive tracking milestones, bear in mind that each milestone only gets triggered once. To understand each milestone and its expected order of occurrence, refer to the information explained in the following table:
 
 <Accordion title="Tracking Milestones" icon="fa-duotone fa-solid fa-display-chart-up">
-  <Table align={["center", "left"]}>
-    <thead>
-      <tr>
-        <th style={{ textAlign: "center" }}>
-          Milestone
-        </th>
 
-        <th style={{ textAlign: "left" }}>
-          Description
-        </th>
-      </tr>
-    </thead>
+| Milestone | Description |
+| --- | --- |
+| **IT'S ON ITS WAY** | The shipment was handed over or is on its way to the carrier. |
+| **IN TRANSIT** | The shipment is travelling through the carrier's network. |
+| **TRANSIT DELAY** | The shipment processing through the carrier's network is delayed. |
+| **IN CUSTOMS** | The shipment is undergoing customs inspections.<br /><em><code>Note</code>: this is applicable to international shipments only.</em> |
+| **OUT FOR DELIVERY** | The shipment is on the way to the recipient. |
+| **DELIVERY ATTEMPT FAILED** | The delivery was attempted, but failed. |
+| **READY FOR COLLECTION** | The shipment was left at a chosen location for the recipient to collect. |
+| **DELIVERED** | The shipment was successfully delivered to the recipient or another person or place chosen by the recipient. |
+| **COLLECTED** | The shipment was successfully collected from the collection point. |
+| **PART DELIVERED** | The part of a consignment shipment was delivered successfully. |
+| **UNDELIVERABLE** | The delivery of the shipment was not possible. |
 
-    <tbody>
-      <tr>
-        <td style={{ textAlign: "center" }}>
-          <strong>IT'S ON ITS WAY</strong>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          The shipment was handed over or is on its way to the carrier.
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "center" }}>
-          <strong>IN TRANSIT</strong>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          The shipment is travelling through the carrier's network.
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "center" }}>
-          <strong>TRANSIT DELAY</strong>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          The shipment processing through the carrier's network is delayed.
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "center" }}>
-          <strong>IN CUSTOMS</strong>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          The shipment is undergoing customs inspections.
-          <br />
-          <em><code>Note</code>: this is applicable to international shipments only.</em>
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "center" }}>
-          <strong>OUT FOR DELIVERY</strong>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          The shipment is on the way to the recipient.
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "center" }}>
-          <strong>DELIVERY ATTEMPT FAILED</strong>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          The delivery was attempted, but failed.
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "center" }}>
-          <strong>READY FOR COLLECTION</strong>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          The shipment was left at a chosen location for the recipient to collect.
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "center" }}>
-          <strong>DELIVERED</strong>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          The shipment was successfully delivered to the recipient or another person or place chosen by the recipient.
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "center" }}>
-          <strong>COLLECTED</strong>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          The shipment was successfully collected from the collection point.
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "center" }}>
-          <strong>PART DELIVERED</strong>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          The part of a consignment shipment was delivered successfully.
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "center" }}>
-          <strong>UNDELIVERABLE</strong>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          The delivery of the shipment was not possible.
-        </td>
-      </tr>
-    </tbody>
-  </Table>
 </Accordion>
 
 ***

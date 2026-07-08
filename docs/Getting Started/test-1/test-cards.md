@@ -24,7 +24,7 @@ This page sets out how to customize the Web SDK <Glossary>UI</Glossary> to match
   <Card title="Layout" href="/docs/web-ui-layout" />
 </Cards>
 
-<Card color="#ff0000" href="#" icon="fa-rocket" title="Getting Started">
+<Card color="#ff1934" href="#" icon="fa-rocket" title="Getting Started">
 
 ## Setup
 
@@ -32,9 +32,9 @@ The SDK is built with [web components](https://developer.mozilla.org/en-US/docs/
 
 Follow these steps:
 
-1. Create the styles file following the guidance below, or ask Fourthline to create it for you.
+1\. Create the styles file following the guidance below, or ask Fourthline to create it for you.
 
-2. Share the file with your Fourthline delivery manager along with your [logo](https://docs.fourthline.com/docs/web-ui-layout#logos) in SVG format.
+2\. Share the file with your Fourthline delivery manager along with your [logo](https://docs.fourthline.com/docs/web-ui-layout#logos) in SVG format.
 
 <div class="call-out call-out__tip">
   <div class="call-out--icon">
@@ -51,8 +51,8 @@ Follow these steps:
 
 ### Flows
 
-- `fl-flow-onboarding`: The [redirect flow](https://docs.fourthline.com/docs/web-sdk#redirect-flow) styles are hosted by you.
-- `fl-flow-verify`: The [product flow](https://docs.fourthline.com/docs/web-sdk#flow) styles are hosted by Fourthline.
+\- `fl-flow-onboarding`: The [redirect flow](https://docs.fourthline.com/docs/web-sdk#redirect-flow) styles are hosted by you.
+\- `fl-flow-verify`: The [product flow](https://docs.fourthline.com/docs/web-sdk#flow) styles are hosted by Fourthline.
 
 Usually, both flows share the **same** styles.
 

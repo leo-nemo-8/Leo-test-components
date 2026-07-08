@@ -19,4 +19,4 @@ next:
       title: /get.php?action=update_keyword_difficulty
       type: endpoint
 ---
-[gfdjgkfdjkg](https://leotest-gtwu.readme.io/update/docs/test-mdx)
+gfdjgkfdjkg

@@ -318,7 +318,7 @@ _Milestones_ refer to significant stages within the shipment process that are es
 If you choose to receive tracking milestones, bear in mind that each milestone only gets triggered once. To understand each milestone and its expected order of occurrence, refer to the information explained in the following table:
 
 <Accordion title="Tracking Milestones" icon="fa-duotone fa-solid fa-display-chart-up">
-  <Table align={["center","left"]}>
+  <Table align={["center", "left"]}>
     <thead>
       <tr>
         <th style={{ textAlign: "center" }}>
@@ -334,17 +334,17 @@ If you choose to receive tracking milestones, bear in mind that each milestone o
     <tbody>
       <tr>
         <td style={{ textAlign: "center" }}>
-          **IT'S ON ITS WAY**
+          <strong>IT'S ON ITS WAY</strong>
         </td>
 
         <td style={{ textAlign: "left" }}>
-          The <Glossary>shipment</Glossary> was handed over or is on its way to the <Glossary>carrier</Glossary>.
+          The shipment was handed over or is on its way to the carrier.
         </td>
       </tr>
 
       <tr>
         <td style={{ textAlign: "center" }}>
-          **IN TRANSIT**
+          <strong>IN TRANSIT</strong>
         </td>
 
         <td style={{ textAlign: "left" }}>
@@ -354,7 +354,7 @@ If you choose to receive tracking milestones, bear in mind that each milestone o
 
       <tr>
         <td style={{ textAlign: "center" }}>
-          **TRANSIT DELAY**
+          <strong>TRANSIT DELAY</strong>
         </td>
 
         <td style={{ textAlign: "left" }}>
@@ -364,19 +364,19 @@ If you choose to receive tracking milestones, bear in mind that each milestone o
 
       <tr>
         <td style={{ textAlign: "center" }}>
-          **IN CUSTOMS**
+          <strong>IN CUSTOMS</strong>
         </td>
 
         <td style={{ textAlign: "left" }}>
           The shipment is undergoing customs inspections.
-
-          *`Note`: this is applicable to international shipments only.*
+          <br />
+          <em><code>Note</code>: this is applicable to international shipments only.</em>
         </td>
       </tr>
 
       <tr>
         <td style={{ textAlign: "center" }}>
-          **OUT FOR DELIVERY**
+          <strong>OUT FOR DELIVERY</strong>
         </td>
 
         <td style={{ textAlign: "left" }}>
@@ -386,7 +386,7 @@ If you choose to receive tracking milestones, bear in mind that each milestone o
 
       <tr>
         <td style={{ textAlign: "center" }}>
-          **DELIVERY ATTEMPT FAILED**
+          <strong>DELIVERY ATTEMPT FAILED</strong>
         </td>
 
         <td style={{ textAlign: "left" }}>
@@ -396,7 +396,7 @@ If you choose to receive tracking milestones, bear in mind that each milestone o
 
       <tr>
         <td style={{ textAlign: "center" }}>
-          **READY FOR COLLECTION**
+          <strong>READY FOR COLLECTION</strong>
         </td>
 
         <td style={{ textAlign: "left" }}>
@@ -406,17 +406,17 @@ If you choose to receive tracking milestones, bear in mind that each milestone o
 
       <tr>
         <td style={{ textAlign: "center" }}>
-          **DELIVERED**
+          <strong>DELIVERED</strong>
         </td>
 
         <td style={{ textAlign: "left" }}>
-          The shipment was successfully delivered to the recipient (or another person/place chosen by the recipient).
+          The shipment was successfully delivered to the recipient or another person or place chosen by the recipient.
         </td>
       </tr>
 
       <tr>
         <td style={{ textAlign: "center" }}>
-          **COLLECTED**
+          <strong>COLLECTED</strong>
         </td>
 
         <td style={{ textAlign: "left" }}>
@@ -426,7 +426,7 @@ If you choose to receive tracking milestones, bear in mind that each milestone o
 
       <tr>
         <td style={{ textAlign: "center" }}>
-          **PART DELIVERED**
+          <strong>PART DELIVERED</strong>
         </td>
 
         <td style={{ textAlign: "left" }}>
@@ -436,7 +436,7 @@ If you choose to receive tracking milestones, bear in mind that each milestone o
 
       <tr>
         <td style={{ textAlign: "center" }}>
-          **UNDELIVERABLE**
+          <strong>UNDELIVERABLE</strong>
         </td>
 
         <td style={{ textAlign: "left" }}>

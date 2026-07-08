@@ -6,11 +6,9 @@ metadata:
   robots: index
 ---
 <Callout icon="📘" theme="info">
-  ####
+  ###
 
-  Ffdgdslgkl
-
-  gfkgkfjg
+  test callout
 </Callout>
 
 <br />

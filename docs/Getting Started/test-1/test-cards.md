@@ -17,23 +17,12 @@ metadata:
 
 This page sets out how to customize the Web SDK <Glossary>UI</Glossary> to match the look and feel of your brand.
 
-<div class="cards cards--tabapp">
-  <a href="/docs/web-ui" class="card card--tabappgreen">
-    <div class="card--titlesmall">Setup</div>
-  </a>
-
-  <a href="/docs/web-ui-fonts" class="card card--tabapp">
-    <div class="card--titlesmall">Fonts</div>
-  </a>
-
-  <a href="/docs/web-ui-colors" class="card card--tabapp">
-    <div class="card--titlesmall">Colors</div>
-  </a>
-
-  <a href="/docs/web-ui-layout" class="card card--tabapp">
-    <div class="card--titlesmall">Layout</div>
-  </a>
-</div>
+<Cards kind="tile">
+  <Card title="Setup" href="/docs/web-ui" />
+  <Card title="Fonts" href="/docs/web-ui-fonts" />
+  <Card title="Colors" href="/docs/web-ui-colors" />
+  <Card title="Layout" href="/docs/web-ui-layout" />
+</Cards>
 
 ## Setup
 

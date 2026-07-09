@@ -51,4 +51,6 @@ hidden: false
   <Card kind="tile" title="Sync" href="#" icon="fa-duotone fa-code-compare">Connect to a storage provider</Card>
 </Cards>
 
+![](https://files.readme.io/c5539e357851031c831f0ca5394fe3afa49a35d7c2f4b418c954681cac0a9a9e-_DSC0664.JPG)
+
 <br />

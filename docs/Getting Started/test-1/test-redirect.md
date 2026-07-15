@@ -1,5 +1,5 @@
 ---
-title: test redirect
+title: redirect
 deprecated: false
 hidden: false
 link:

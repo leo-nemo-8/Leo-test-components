@@ -8,7 +8,7 @@ metadata:
 ---
 title: RCS Text Template
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---

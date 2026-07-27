@@ -25,7 +25,9 @@ Follow the steps to create an App push campaign.
 <Image src="https://files.readme.io/3db93ee432dac864403d2b3d16880e9205024c7f59bf790e310543fe50f006b9-CreateAppPush-ezgif.com-crop.gif" alt="Create an App Push Notification" align="center" width="80% " caption="Create an App Push Notification" border={true} />
 
 
-<Accordion title="4. Setup: Add the campaign details here." icon="fa-gear">
+<details>
+
+<summary>4&#46; Setup: Add the campaign details here.</summary>
 
 ## Setup
 
@@ -43,9 +45,11 @@ Fill in all the required sections and proceed.
 
 <UTMParametersAppPush />
 
-</Accordion>
+</details>
 
-<Accordion title="5. Define the target audience for your campaign in the Audience section." icon="fa-users">
+<details>
+
+<summary> 5&#46; Define the target audience for your campaign in the Audience section.</summary>
 
 ## Audience
 
@@ -77,9 +81,11 @@ Select suppression segments or lists to exclude specific users from campaign tar
 <Image src="https://files.readme.io/404ab392766a61f2fae90a0c33d4bdb446d74d8ae57e1e3af5d09b60fa41cf7e-ExcludeContactsAPN.png" alt="Exclude contacts from your campaign" align="center" width="60% " caption="Exclude Contacts from your Campaign" border={true} />
 
 
-</Accordion>
+</details>
 
-<Accordion title="6. Create the content of the app push under the Content section." icon="fa-pen-to-square">
+<details>
+
+<summary> 6&#46; Create the content of the app push under the Content section.</summary>
 
 ## Content
 
@@ -424,9 +430,11 @@ Refer to the table below for details on the sections under **Send Test Notificat
   Test notifications are excluded from campaign statistics.
 </Callout>
 
-</Accordion>
+</details>
 
-<Accordion title="7. Define the campaign's delivery time and date under the Schedule section." icon="fa-calendar">
+<details>
+
+<summary> 7&#46; Define the campaign's delivery time and date under the Schedule section.</summary>
 
 ## Schedule
 
@@ -514,7 +522,7 @@ Refer to the table below for details on the sections under **Schedule campaign**
   For example, if you schedule one app push at 12:00 pm and another at 12:30 pm with a frequency cap limiting users to one app push per day. In this case, the second push notification may not reach users due to the frequency cap settings.
 </Callout>
 
-</Accordion>
+</details>  
 
 8. Click the **Preview** option to save your campaign and preview the app push. Once you have checked the details and appearance of your entire app push, click **Save & Publish** to publish it.
 

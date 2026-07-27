@@ -25,11 +25,9 @@ Follow the steps to create an App push campaign.
 <Image src="https://files.readme.io/3db93ee432dac864403d2b3d16880e9205024c7f59bf790e310543fe50f006b9-CreateAppPush-ezgif.com-crop.gif" alt="Create an App Push Notification" align="center" width="80% " caption="Create an App Push Notification" border={true} />
 
 
-<details>
-
-<summary>4&#46; Setup: Add the campaign details here.</summary>
-
 ## Setup
+
+<Accordion title="4. Setup: Add the campaign details here." icon="fa-gear">
 
 Refer to the table below for details on the sections available under **Setup**.
 
@@ -45,13 +43,11 @@ Fill in all the required sections and proceed.
 
 <UTMParametersAppPush />
 
-</details>
-
-<details>
-
-<summary> 5&#46; Define the target audience for your campaign in the Audience section.</summary>
+</Accordion>
 
 ## Audience
+
+<Accordion title="5. Define the target audience for your campaign in the Audience section." icon="fa-users">
 
 The **Audience** section lets you select who to target your App Push. It has the following sections:
 
@@ -81,13 +77,11 @@ Select suppression segments or lists to exclude specific users from campaign tar
 <Image src="https://files.readme.io/404ab392766a61f2fae90a0c33d4bdb446d74d8ae57e1e3af5d09b60fa41cf7e-ExcludeContactsAPN.png" alt="Exclude contacts from your campaign" align="center" width="60% " caption="Exclude Contacts from your Campaign" border={true} />
 
 
-</details>
-
-<details>
-
-<summary> 6&#46; Create the content of the app push under the Content section.</summary>
+</Accordion>
 
 ## Content
+
+<Accordion title="6. Create the content of the app push under the Content section." icon="fa-pen-to-square">
 
 After the basic setup and defining the target audience, **Content** is the section where you can add the content for your campaign. You can **Create new layout**, use from **existing APN templates**, or select from the **Advance layouts** listed on this screen.
 
@@ -430,13 +424,11 @@ Refer to the table below for details on the sections under **Send Test Notificat
   Test notifications are excluded from campaign statistics.
 </Callout>
 
-</details>
-
-<details>
-
-<summary> 7&#46; Define the campaign's delivery time and date under the Schedule section.</summary>
+</Accordion>
 
 ## Schedule
+
+<Accordion title="7. Define the campaign's delivery time and date under the Schedule section." icon="fa-calendar">
 
 You can create and preview your App Push campaign and then schedule your campaign.
 
@@ -522,7 +514,7 @@ Refer to the table below for details on the sections under **Schedule campaign**
   For example, if you schedule one app push at 12:00 pm and another at 12:30 pm with a frequency cap limiting users to one app push per day. In this case, the second push notification may not reach users due to the frequency cap settings.
 </Callout>
 
-</details>  
+</Accordion>
 
 8. Click the **Preview** option to save your campaign and preview the app push. Once you have checked the details and appearance of your entire app push, click **Save & Publish** to publish it.
 
